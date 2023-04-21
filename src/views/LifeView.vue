@@ -1,6 +1,6 @@
 <template>
     <Layout
-        :style="{ 'background-image': `url(../src/assets/right.jpg)`, 'height': '500px', 'background-position': 'center -120px' }" />
+        :style="{'height': '500px', 'background-position': 'center -120px' }" :bg="'life'" />
 </template>
   
 <script setup>

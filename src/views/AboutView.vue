@@ -1,11 +1,9 @@
 <template>
-  <Layout :style="{'background-image':`url(../src/assets/bird.jpg)`,'height':'500px'}" />
+  <Layout :style="{ 'height': '500px' }" :bg="'about'" />
 </template>
 
 <script setup>
 import Layout from './Layout.vue';
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

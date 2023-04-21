@@ -1,5 +1,5 @@
 <template>
-    <Layout :style="{ 'background-image': `url(@/assets/side.jpg)`, 'height': '500px' }">
+    <Layout :style="{ 'height': '500px' }" :bg="'home'">
         <template #word>
             <!-- <h1 class="title">所有文章</h1> -->
         </template>
@@ -15,7 +15,6 @@ import { ref } from 'vue'
 import Layout from './Layout.vue'
 import { store } from '@/stores/db'
 const text = ref('')
-
 const save = () => {
     const DB = store.DB
     const d = new Date()

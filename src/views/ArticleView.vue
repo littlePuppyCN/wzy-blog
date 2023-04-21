@@ -1,6 +1,6 @@
 
 <template>
-    <Layout :style="{ 'background-image': `url(../src/assets/control.jpg)`, 'height': '500px' }">
+    <Layout :style="{  'height': '500px' }" :bg="'article'">
         <template #title>
             <h1>所有文章</h1>
         </template>

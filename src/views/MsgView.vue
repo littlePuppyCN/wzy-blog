@@ -1,5 +1,6 @@
 <template>
-    <Layout :style="{'background-image':`url(../src/assets/black_side.jpg)`,'height':'500px'}" />
+        <Layout :style="{ 'height': '500px' }" :bg="'msg'" />
+
 </template>
   
 <script setup>

@@ -24,8 +24,7 @@ const articles = ref([
 <template>
   <Layout :style="{
     height: '100vh',
-    'background-image': `url(../src/assets/r3.jpg)`
-  }">
+  }" :bg="'home'">
     <template #word>
       <div class="mask">
       </div>
