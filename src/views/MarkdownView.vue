@@ -1,5 +1,5 @@
 <template>
-    <Layout :style="{ 'background-image': `url(../src/assets/side.jpg)`, 'height': '500px' }">
+    <Layout :style="{ 'background-image': `url(@/assets/side.jpg)`, 'height': '500px' }">
         <template #word>
             <!-- <h1 class="title">所有文章</h1> -->
         </template>
