@@ -1,0 +1,41 @@
+<template>
+    <div class="container">
+        <Header />
+        <main>
+            <div class="word" :style="{ ...style }">
+                <slot name="word" />
+            </div>
+            <div class="w1200 layout">
+                <div class="title">
+                    <slot name="title" />
+                </div>
+                <div>
+                    <slot name="content" />
+                </div>
+            </div>
+        </main>
+        <Footer />
+    </div>
+</template>
+
+<script setup>
+import Header from '../components/Header.vue'
+import Footer from '../components/Footer.vue'
+const { style = {} } = defineProps(['style'])
+</script>
+
+<style  scoped>
+main {
+    width: 100%;
+    min-height: calc(100vh - 100px);
+    position: relative;
+}
+
+.title{
+    text-align: center;
+    color: white;
+    font-size: 1.4em;
+    text-shadow: 4px 2px 5px black;
+    transform: skewX(-20deg);
+}
+</style>
