@@ -99,25 +99,25 @@ body,
 }
 
 .home {
-  background-image: url('../assets/side.jpg');
+  background-image: url('./side.jpg');
 }
 
 .article {
-  background-image: url('../assets/control.jpg');
+  background-image: url('./control.jpg');
 }
 
 .life {
-  background-image: url('../assets/right.jpg');
+  background-image: url('./right.jpg');
 }
 
 .msg {
-  background-image: url('../assets/black_side.jpg');
+  background-image: url('./black_side.jpg');
 }
 
 .friends {
-  background-image: url('../assets/side.jpg');
+  background-image: url('./side.jpg');
 }
 
 .about {
-  background-image: url('../assets/bird.jpg');
+  background-image: url('./bird.jpg');
 }
