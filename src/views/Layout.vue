@@ -26,29 +26,7 @@ const { style = {}, bg = '' } = defineProps(['style', 'bg'])
 </script>
 
 <style  scoped>
-.home {
-    background-image: url('../assets/side.jpg');
-}
 
-.article {
-    background-image: url('../assets/control.jpg');
-}
-
-.life {
-    background-image: url('../assets/right.jpg');
-}
-
-.msg {
-    background-image: url('../assets/black_side.jpg');
-}
-
-.friends {
-    background-image: url('../assets/side.jpg');
-}
-
-.about {
-    background-image: url('../assets/bird.jpg');
-}
 
 main {
     width: 100%;
