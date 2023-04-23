@@ -17,8 +17,24 @@ export const store = reactive({
             this.DB = storageDB
         }
     },
-    setDB(key,value){
-        this.DB[key].value = value
+    setDB(){
+        storage.setItem('DB',this.DB)
+    },
+    addArticle(value){
+        this.DB.list.push(value)
+        storage.setItem('DB',this.DB)
+    },
+    deleteArticle(id){
+        this.DB.list = this.DB.list.filter(l => l.id !== id)
+        storage.setItem('DB',this.DB)
+    },
+    editArticle(val){
+        console.log(val)
+        this.DB.list.forEach((l) => {
+            if(val.id === l.id){
+               l = Object.assign(l,val)
+            }
+        })
         storage.setItem('DB',this.DB)
     }
 })

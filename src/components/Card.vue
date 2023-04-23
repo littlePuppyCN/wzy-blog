@@ -10,9 +10,11 @@ const props = defineProps(['config', 'style'])
 
 <style  scoped>
 .card {
-    height: 220px;
-    color: black;
+    /* height: 220px; */
+    /* color: black; */
     padding: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 h1 {

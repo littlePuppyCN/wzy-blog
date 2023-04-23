@@ -1,13 +1,21 @@
 <template>
-    <Card :config="{scale:true}">
-        <h1>{{ title }}</h1>
-        <p>{{ content }}</p>
+    <Card 
+    :style="{'margin-bottom':'20px'}"
+    :config="{ scale: true }" 
+    v-for="article in DB.list" 
+    :key="article.id">
+        <h1>{{ article.title }}</h1>
+        <div style="height:90px; overflow: hidden;">
+            <p>{{ article.content }}</p>
+
+        </div>
         <div class="bot">
-            <div>{{ date }}</div>
+            <div>{{ article.update }}</div>
             <div class="tags">
-                <div v-for="t in tags" :key="t">
+                <!-- <div v-for="t in tags" :key="t">
                     {{ t }}
-                </div>
+                </div> -->
+                vue react
             </div>
         </div>
     </Card>
@@ -15,40 +23,44 @@
 
 <script setup>
 import Card from '../components/Card.vue'
-
-const props = defineProps(['date'])
-const { title, content, date, tags } = props.date
+import { store } from '@/stores/db'
+const { DB } = store
 
 </script>
 
 <style  scoped>
-.card {
-    height: 220px;
-    color: black;
-    padding: 20px;
-}
-
 h1 {
     text-align: center;
     font-size: 1.5em;
-    margin: 20px 0;
+    margin: 0 0 10px 0;
 }
 
 p {
-    height: 80px;
+    /* 溢出部分隐藏 */
+    overflow: hidden;
+    /* 溢出部分用省略号代替 */
+    text-overflow: ellipsis;
+    /* 弹性伸缩盒子模型显示 */
+    display: -webkit-box;
+    /* 限制一个块元素显示的文本行数 */
+    -webkit-line-clamp: 3;
+    /* 设置伸缩盒对象子元素的排列方式 */
+    -webkit-box-orient: vertical;
+    font-size: 1.1em;
 }
 
 .bot {
+    margin-top: 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.tags{
+.tags {
     display: flex;
 }
 
-.tags div{
+.tags div {
     margin-left: 10px;
 }
 </style>

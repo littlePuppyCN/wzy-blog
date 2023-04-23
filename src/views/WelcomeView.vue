@@ -10,15 +10,6 @@ const onScroll = () => {
   store.visible()
 }
 
-const articles = ref([
-  {
-    title: '【解决办法】ssh: connect to host github.com port 22',
-    content: '根据 CommonJS 模块化规范，一个单独的JS文件就是一个模块，每个模块是一个单独的作用域，在模块内部定义的变量，无法在其他模块中所读取。若想要在模块间进行通信，需使用模块的导出与导入语法：',
-    date: '2022-12-21',
-    tags: ['技巧', 'Vue']
-  }
-])
-
 </script>
 
 <template>
@@ -37,7 +28,7 @@ const articles = ref([
     <template #content>
       <div style="display: flex;">
         <div class="articles">
-          <PreArticles v-for="c in articles" :key="c.date" :date="c" />
+          <PreArticles/>
         </div>
         <div class="sidebar">
           <Introduce />

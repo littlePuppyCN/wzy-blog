@@ -43,6 +43,11 @@ const router = createRouter({
       component: () => import('../views/MarkdownView.vue')
 
     },
+    {
+      path: '/post',
+      name: 'post',
+      component: () => import('../views/PostView.vue')
+    },
     // {
     //   path: '/about',
     //   name: 'about',

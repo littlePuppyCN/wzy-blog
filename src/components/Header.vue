@@ -3,22 +3,20 @@ import { onMounted, ref } from 'vue'
 import { store } from '@/stores/scroll'
 const now = ref('')
 
-const visted = ref(null)
-
 onMounted(() => {
     setInterval(() => {
         const d = new Date()
         now.value = d.toLocaleString()
-    }, 1000)
+    },1000)
 })
 
 </script>
 
 <template>
-    <header :class="['header']">
+    <header :class="['header']" @click="() => store.hidden()">
         <nav>
             <div class="ho" style="margin-left:10px;">
-                <div :tab="0" ><router-link to="/">首页</router-link></div>
+                <div :tab="0"><router-link to="/">首页</router-link></div>
             </div>
             <div class="navs" :class="{ navsOn: store.headerVisible }">
                 <div :class="{ hide: store.headerVisible }" :tab="1"><router-link to="/article">文章</router-link></div>
