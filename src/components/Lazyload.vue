@@ -1,6 +1,6 @@
 <template>
     <div v-if="!show">Loading ...</div>
-    <img width="500" v-else :src="props.src" alt="">
+    <img width="500" v-else :src="'https://lzxjack.top/assets/bg1.47ad3fba..webp'" alt="">
 </template>
 
 <script setup>
@@ -25,10 +25,10 @@ const show = ref(false)
 onMounted(() => {
     new Promise((resolve) => {
         const img = new Image()
+        img.src = props.src
         img.onload = () => {
             resolve()
         }
-        img.src = props.src
     }).then(res => {
         console.log('then')
         show.value = true
