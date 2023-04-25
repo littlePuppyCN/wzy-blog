@@ -30,7 +30,7 @@ onMounted(() => {
         }
         img.src = props.src
     }).then(res => {
-        console.log('图片加载完毕')
+        console.log('then')
         show.value = true
         emits('loadSuccess', show.value)
     })
