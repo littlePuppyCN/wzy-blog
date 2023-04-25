@@ -103,23 +103,23 @@ body,
 }
 
 .article {
-  background-image: url('./control.webp');
+  background-image: url('./control_low.webp');
 }
 
 .life {
-  background-image: url('./right.webp');
+  background-image: url('./right_low.webp');
 }
 
 .msg {
-  background-image: url('./black_side.webp');
+  background-image: url('./black_side_low.webp');
 }
 
 .friends {
-  background-image: url('./side.webp');
+  background-image: url('./side_low.webp');
 }
 
 .about {
-  background-image: url('./bird.webp');
+  background-image: url('./bird_low.webp');
 }
 
 .global_input{

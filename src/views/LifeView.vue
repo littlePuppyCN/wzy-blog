@@ -17,7 +17,6 @@
 <script setup>
 import Layout from './Layout.vue';
 import Lazyload from '../components/Lazyload.vue';
-import Img from '@/assets/r3.webp';
 import Card from '../components/Card.vue';
 import { store } from '@/stores/db';
 import { computed } from 'vue';
