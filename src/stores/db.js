@@ -3,7 +3,10 @@ import storage from '@/utils/storage.js'
 
 const initial = {
     list:[],
-    msg:[]
+    msg:[],
+    life:[],
+    friend:[],
+    construct:[]
 }
 const storageDB = storage.getItem('DB')
 
@@ -20,17 +23,16 @@ export const store = reactive({
     setDB(){
         storage.setItem('DB',this.DB)
     },
-    addArticle(value){
-        this.DB.list.push(value)
+    addArticle(value,type){
+        this.DB[type].push(value)
         storage.setItem('DB',this.DB)
     },
-    deleteArticle(id){
-        this.DB.list = this.DB.list.filter(l => l.id !== id)
+    deleteArticle(id,type){
+        this.DB[type] = this.DB[type].filter(l => l.id !== id)
         storage.setItem('DB',this.DB)
     },
-    editArticle(val){
-        console.log(val)
-        this.DB.list.forEach((l) => {
+    editArticle(val,type){
+        this.DB[type].forEach((l) => {
             if(val.id === l.id){
                l = Object.assign(l,val)
             }

@@ -35,9 +35,6 @@ main {
 }
 
 .title {
-    text-align: center;
     color: white;
     font-size: 1.4em;
-    text-shadow: 4px 2px 5px black;
-    transform: skewX(-20deg);
 }</style>

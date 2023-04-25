@@ -55,6 +55,7 @@ body,
 .layout{
   animation: movement_up 1s;
   margin-top: 80px;
+  margin-bottom: 80px;
 }
 
 

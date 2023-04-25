@@ -28,7 +28,7 @@ const onScroll = () => {
     <template #content>
       <div style="display: flex;">
         <div class="articles">
-          <PreArticles/>
+          <PreArticles />
         </div>
         <div class="sidebar">
           <Introduce />

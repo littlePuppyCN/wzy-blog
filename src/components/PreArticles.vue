@@ -1,9 +1,6 @@
 <template>
-    <Card 
-    :style="{'margin-bottom':'20px'}"
-    :config="{ scale: true }" 
-    v-for="article in DB.list" 
-    :key="article.id">
+    <Card :style="{ 'margin-bottom': '20px' ,'cursor':'pointer'}" @click="showArcticle(article)" :config="{ scale: true }"
+        v-for="article in DB.list" :key="article.id">
         <h1>{{ article.title }}</h1>
         <div style="height:90px; overflow: hidden;">
             <p>{{ article.content }}</p>
@@ -24,7 +21,13 @@
 <script setup>
 import Card from '../components/Card.vue'
 import { store } from '@/stores/db'
+import { useRouter } from 'vue-router'
+const router = useRouter()
+
 const { DB } = store
+const showArcticle = (value) => {
+    router.push({ path: '/post', query: { id: value.id } })
+}
 
 </script>
 

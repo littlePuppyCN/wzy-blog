@@ -1,23 +1,27 @@
 <template>
     <Layout :style="{ 'height': '500px' }" :bg="'home'">
         <template #word>
-            <!-- <h1 class="title">所有文章</h1> -->
         </template>
         <template #content>
+            <div class="nav">
+                <div v-for="t in types" :key="t.name" @click="changeType(t.name)">
+                    <div>{{ t.title }}</div>
+                </div>
+            </div>
             <h1 class="title">
-                <label for="article_title">文章标题</label><input class="global_input" type="text" v-model="postData.title">
+                <label for="article_title">{{ getTitle }}</label><input class="global_input" type="text"
+                    v-model="postData.title">
             </h1>
             <v-md-editor v-model="postData.content" height="500px" @save="save"></v-md-editor>
-            
         </template>
     </Layout>
     <div class="fixed_bar scale">
         <Card>
-            <div class="bar_box" v-for="c in store.DB.list" :key="c.id">
+            <div class="bar_box" v-for="c in store.DB[postType]" :key="c.id">
                 <div class="bar_title" :title="c.title">{{ c.title }}</div>
                 <div class="options">
                     <span @click="onEdit(c)">编辑</span>
-                    <!-- <span @click="onDelete(c)">删除</span> -->
+                    <span @click="onDelete(c)">删除</span>
                 </div>
             </div>
         </Card>
@@ -25,10 +29,20 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import Layout from './Layout.vue'
 import { store } from '@/stores/db'
 import Card from '../components/Card.vue'
+
+const postType = ref('list')
+
+const types = ref([
+    { name: 'list', title: '文章' },
+    { name: 'life', title: '生活' },
+    { name: 'msg', title: '留言板' },
+    { name: 'friend', title: '友链' },
+    { name: 'construct', title: '建站' }]
+)
 
 const postData = ref(
     {
@@ -39,6 +53,13 @@ const postData = ref(
     }
 )
 
+const getTitle = computed(() => (types.value.find((t) => t.name === postType.value)).title)
+
+const changeType = (v) => {
+    postType.value = v
+    reset()
+}
+
 const onEdit = (v) => {
     postData.value = {
         ...postData.value,
@@ -47,7 +68,7 @@ const onEdit = (v) => {
 }
 
 const onDelete = (v) => {
-    store.deleteArticle(v.id)
+    store.deleteArticle(v.id,postType.value)
 }
 
 const reset = () => {
@@ -60,11 +81,11 @@ const reset = () => {
 }
 
 const save = () => {
-    if (!postData.value.title.length) {
+    if (!postData.value.title.length && postType.value === 'list') {
         alert('至少需要一个文章标题')
         return
     }
-    // 新文章
+    // 新内容
     if (!postData.value.id) {
         const d = new Date()
         postData.value = {
@@ -72,10 +93,10 @@ const save = () => {
             id: d.getTime(),
             update: d.toLocaleString()
         }
-        store.addArticle(postData.value)
+        store.addArticle(postData.value, postType.value)
     } else {
         // 编辑
-        store.editArticle(postData.value)
+        store.editArticle(postData.value, postType.value)
     }
     reset()
 }
@@ -90,6 +111,7 @@ const save = () => {
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
+    margin-top: 50px;
 }
 
 
@@ -118,5 +140,16 @@ const save = () => {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.nav {
+    display: flex;
+    flex-direction: row;
+    font-size: 1.3em;
+    justify-content: center;
+}
+
+.nav div {
+    margin: 0 10px;
 }
 </style>

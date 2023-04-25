@@ -58,6 +58,9 @@ const search = () => {
 <style scoped>
 .empty{
     height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 @keyframes moto {
     0%{

@@ -10,20 +10,24 @@ onMounted(() => {
     },1000)
 })
 
+const onClick = (evt) => {
+    console.log(evt)
+}
+
 </script>
 
 <template>
     <header :class="['header']" @click="() => store.hidden()">
         <nav>
-            <div class="ho" style="margin-left:10px;">
-                <div :tab="0"><router-link to="/">首页</router-link></div>
+            <div  class="ho" style="margin-left:10px;">
+                <div  :tab="0"><router-link to="/">首页</router-link></div>
             </div>
             <div class="navs" :class="{ navsOn: store.headerVisible }">
                 <div :class="{ hide: store.headerVisible }" :tab="1"><router-link to="/article">文章</router-link></div>
                 <div :class="{ hide: store.headerVisible }" :tab="2"><router-link to="/life">生活</router-link></div>
                 <div :class="{ hide: store.headerVisible }" :tab="3"><router-link to="/msg">留言板</router-link></div>
                 <div :class="{ hide: store.headerVisible }" :tab="4"><router-link to="/friends">友链</router-link></div>
-                <div :class="{ hide: store.headerVisible }" :tab="5"><router-link to="/about">关于</router-link></div>
+                <div :class="{ hide: store.headerVisible }" :tab="5"><router-link to="/about">建站</router-link></div>
             </div>
             <div class="guidao" :class="{ onguidao: !store.headerVisible }">
                 {{ now }}
