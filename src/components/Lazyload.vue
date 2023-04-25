@@ -1,6 +1,6 @@
 <template>
     <div v-if="!show">Loading ...</div>
-    <img width="500"  v-else :src="props.src" alt="">
+    <img width="500" v-else :src="props.src" alt="">
 </template>
 
 <script setup>
@@ -26,12 +26,13 @@ onMounted(() => {
     new Promise((resolve) => {
         const img = new Image()
         img.onload = () => {
-            console.log('图片加载完毕')
             resolve()
-            show.value = true
-            emits('loadSuccess', show.value)
         }
         img.src = props.src
+    }).then(res => {
+        console.log('图片加载完毕')
+        show.value = true
+        emits('loadSuccess', show.value)
     })
 })
 
