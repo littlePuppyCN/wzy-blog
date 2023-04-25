@@ -99,27 +99,27 @@ body,
 }
 
 .home {
-  background-image: url('https://lzxjack.top/assets/bg0.5157712f..webp');
+  background-image: url('./r3.webp');
 }
 
 .article {
-  background-image: url('./control.jpg');
+  background-image: url('./control.webp');
 }
 
 .life {
-  background-image: url('./right.jpg');
+  background-image: url('./right.webp');
 }
 
 .msg {
-  background-image: url('./black_side.jpg');
+  background-image: url('./black_side.webp');
 }
 
 .friends {
-  background-image: url('./side.jpg');
+  background-image: url('./side.webp');
 }
 
 .about {
-  background-image: url('./bird.jpg');
+  background-image: url('./bird.webp');
 }
 
 .global_input{

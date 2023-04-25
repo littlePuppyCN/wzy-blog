@@ -9,7 +9,7 @@
 <script setup>
 import Layout from './Layout.vue';
 import Lazyload from '../components/Lazyload.vue';
-import Img from '@/assets/r3.jpg';
+import Img from '@/assets/r3.webp';
 
 const t = (v) => console.log(v)
 </script>
