@@ -41,7 +41,7 @@ const getTime = computed(() => {
     height: 220px;
     border-radius: 8px 8px 0 0;
     background-color: white;
-    background-image: url('@/assets/zy.jpg');
+    background-image: url('@/assets/zy.webp');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

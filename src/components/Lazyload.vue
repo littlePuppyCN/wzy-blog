@@ -1,41 +1,34 @@
 <template>
-    <div v-if="!show">Loading ...</div>
-    <img width="500" v-else :src="props.src" alt="">
+    <div class="load" :style="{ width: props.width+'px', height: props.height+'px' }" v-if="!show"></div>
+    <img v-else :width="props.width" :height="props.height" :src="props.src" alt="">
 </template>
 
 <script setup>
 import { onMounted, ref } from 'vue'
-const props = defineProps(['src'])
-const emits = defineEmits(['loadSuccess'])
+const props = defineProps(['src', 'width', 'height'])
 const show = ref(false)
 
-// const p = (url) => {
-//     return new Promise((resolve) => {
-//         const img = new Image()
-//         img.onload = () => {
-//             console.log('图片加载完毕')
-//             resolve()
-//             show.value = true
-//             emits('loadSuccess',show.value)
-//         }
-//         img.src = url
-//     })
-// }
-
+console.log(props.src)
 onMounted(() => {
     new Promise((resolve) => {
-        const img = new Image()
+        let img = new Image()
         img.src = props.src
         img.onload = () => {
             resolve()
+            img = null
         }
     }).then(res => {
-        console.log('then')
         show.value = true
-        emits('loadSuccess', show.value)
     })
 })
 
 </script>
 
-<style scoped></style>
+<style scoped>
+.load {
+    background-image: url('https://img.lzxjack.top/img/202203302022741.webp');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+</style>

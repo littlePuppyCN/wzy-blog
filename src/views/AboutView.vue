@@ -71,4 +71,8 @@ h1:hover .inner_dot {
   width: 14px;
   transition: 0.3s all;
 }
+
+pre{
+  line-height: 32px;
+}
 </style>
