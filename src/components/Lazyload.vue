@@ -1,6 +1,6 @@
 <template>
     <div v-if="!show">Loading ...</div>
-    <img v-else :src="props.src" alt="">
+    <img width="500"  v-else :src="props.src" alt="">
 </template>
 
 <script setup>
