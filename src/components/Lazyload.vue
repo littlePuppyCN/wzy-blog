@@ -1,6 +1,6 @@
 <template>
     <div v-if="!show">Loading ...</div>
-    <img width="500" v-else :src="'https://lzxjack.top/assets/bg1.47ad3fba..webp'" alt="">
+    <img width="500" v-else :src="props.src" alt="">
 </template>
 
 <script setup>
