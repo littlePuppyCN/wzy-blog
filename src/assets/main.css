@@ -99,7 +99,7 @@ body,
 }
 
 .home {
-  background-image: url('./r3.webp');
+  background-image: url('./r3.webp'),url('./r3_low.webp');
 }
 
 .article {
