@@ -7,7 +7,7 @@
                         'flex-direction': 'row',
                         'justify-content': 'space-between'
                     }">
-                    <Lazyload v-for="i in store.DB.life" :src="getUrl(i.content)" :key="i.id" :width="470" :height="330" />
+                    <Lazyload v-for="i in store.DB.life" :src="i.content" :key="i.id" :width="470" :height="330" />
                 </Card>
             </div>
         </template>

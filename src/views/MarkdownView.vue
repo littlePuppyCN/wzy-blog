@@ -12,7 +12,8 @@
                 <label for="article_title">{{ getTitle }}</label><input class="global_input" type="text"
                     v-model="postData.title">
             </h1>
-            <v-md-editor v-model="postData.content" height="500px" @save="save"></v-md-editor>
+            <v-md-editor :disabled-menus="[]" @upload-image="handleUploadImage" v-model="postData.content" height="500px"
+                @save="save"></v-md-editor>
         </template>
     </Layout>
     <div class="fixed_bar scale">
@@ -29,10 +30,15 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, onUnmounted, ref } from 'vue'
 import Layout from './Layout.vue'
 import { store } from '@/stores/db'
 import Card from '../components/Card.vue'
+import { getUrlBase64 } from '@/utils/base64.js'
+
+onUnmounted(() => {
+    window.URL.revokeObjectURL(postData.value.content)
+})
 
 const postType = ref('list')
 
@@ -41,8 +47,25 @@ const types = ref([
     { name: 'life', title: '生活' },
     { name: 'msg', title: '留言板' },
     { name: 'friend', title: '友链' },
+    { name: 'next', title: '待办' },
     { name: 'construct', title: '建站' }]
 )
+
+const handleUploadImage = (event, insertImage, files) => {
+
+    // let reader = new FileReader();
+    // reader.readAsDataURL(files[0]); // 这里是最关键的一步，转换就在这里
+    // reader.onloadend = function () {
+    //     postData.value.content = this.result
+    // }
+
+    const url = window.URL.createObjectURL(files[0])
+    postData.value.content = url
+    // URL.revokeObjectURL(url)
+    // getUrlBase64(url).then(res => {
+    //     postData.value.content = res
+    // })
+}
 
 const postData = ref(
     {
@@ -68,7 +91,7 @@ const onEdit = (v) => {
 }
 
 const onDelete = (v) => {
-    store.deleteArticle(v.id,postType.value)
+    store.deleteArticle(v.id, postType.value)
 }
 
 const reset = () => {

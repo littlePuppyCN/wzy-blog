@@ -6,7 +6,9 @@ const initial = {
     msg:[],
     life:[],
     friend:[],
-    construct:[]
+    construct:[],
+    next:[],
+    img:null
 }
 const storageDB = storage.getItem('DB')
 

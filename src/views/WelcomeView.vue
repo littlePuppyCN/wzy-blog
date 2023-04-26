@@ -5,6 +5,8 @@ import Introduce from '../components/Introduce.vue'
 import PreArticles from '../components/PreArticles.vue'
 import Layout from './Layout.vue'
 import { ref } from 'vue'
+import { store as storeDB } from '@/stores/db.js'
+
 const onScroll = () => {
   document.querySelector('.layout').scrollIntoView({ behavior: 'smooth' })
   store.visible()
@@ -32,9 +34,12 @@ const onScroll = () => {
         </div>
         <div class="sidebar">
           <Introduce />
+          <div class="next">
+            {{ storeDB.DB.next[0]?.content }}...✔️
+          </div>
         </div>
-      </div>
 
+      </div>
     </template>
   </Layout>
 </template>
