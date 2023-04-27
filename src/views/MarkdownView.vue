@@ -4,19 +4,24 @@
         </template>
         <template #content>
             <div class="nav">
-                <div v-for="t in types" :key="t.name" @click="changeType(t.name)">
+                <div :class="{ highlight: t.name === postType }" v-for="t in types" :key="t.name"
+                    @click="changeType(t.name)">
                     <div>{{ t.title }}</div>
                 </div>
             </div>
             <h1 class="title">
                 <label for="article_title">{{ getTitle }}</label><input class="global_input" type="text"
                     v-model="postData.title">
+                <select v-model="selectValue" @change="changeOptions">
+                    <option value='none' disabled>请选择</option>
+                    <option v-for="o in options" :value="o.text" :key="o.text">{{o.text}}</option>
+                </select>
             </h1>
             <v-md-editor :disabled-menus="[]" @upload-image="handleUploadImage" v-model="postData.content" height="500px"
                 @save="save"></v-md-editor>
         </template>
     </Layout>
-    <div class="fixed_bar scale">
+    <div class="fixed_bar scale box_shadow" v-if="store.DB[postType].length">
         <Card>
             <div class="bar_box" v-for="c in store.DB[postType]" :key="c.id">
                 <div class="bar_title" :title="c.title">{{ c.title }}</div>
@@ -30,17 +35,16 @@
 </template>
 
 <script setup>
-import { computed, onUnmounted, ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 import Layout from './Layout.vue'
 import { store } from '@/stores/db'
 import Card from '../components/Card.vue'
 import { getUrlBase64 } from '@/utils/base64.js'
 
-onUnmounted(() => {
-    window.URL.revokeObjectURL(postData.value.content)
-})
-
 const postType = ref('list')
+const selectValue = ref('none')
+
+const options = [{ text: 'javascript' }, { text: 'vue' }, { text: 'react' }, { text: 'html' }, { text: '性能优化' },{text:'有感而发'},{text:'摩托车说'}]
 
 const types = ref([
     { name: 'list', title: '文章' },
@@ -53,18 +57,11 @@ const types = ref([
 
 const handleUploadImage = (event, insertImage, files) => {
 
-    // let reader = new FileReader();
-    // reader.readAsDataURL(files[0]); // 这里是最关键的一步，转换就在这里
-    // reader.onloadend = function () {
-    //     postData.value.content = this.result
-    // }
-
-    const url = window.URL.createObjectURL(files[0])
-    postData.value.content = url
-    // URL.revokeObjectURL(url)
-    // getUrlBase64(url).then(res => {
-    //     postData.value.content = res
-    // })
+    let reader = new FileReader();
+    reader.readAsDataURL(files[0]); // 这里是最关键的一步，转换就在这里
+    reader.onloadend = function () {
+        postData.value.content = this.result
+    }
 }
 
 const postData = ref(
@@ -73,10 +70,17 @@ const postData = ref(
         content: '',
         title: '',
         update: null,
+        tags:''
     }
 )
 
 const getTitle = computed(() => (types.value.find((t) => t.name === postType.value)).title)
+
+const changeOptions = (evt) => {
+    const type = evt.target.value
+    if(postData.value.tags.includes(type)) return 
+    postData.value.tags = evt.target.value
+} 
 
 const changeType = (v) => {
     postType.value = v
@@ -88,10 +92,12 @@ const onEdit = (v) => {
         ...postData.value,
         ...v
     }
+    selectValue.value = v.tags
 }
 
 const onDelete = (v) => {
     store.deleteArticle(v.id, postType.value)
+    reset()
 }
 
 const reset = () => {
@@ -100,7 +106,9 @@ const reset = () => {
         content: '',
         title: '',
         update: null,
+        tags:''
     }
+    selectValue.value = 'none'
 }
 
 const save = () => {
@@ -108,6 +116,7 @@ const save = () => {
         alert('至少需要一个文章标题')
         return
     }
+
     // 新内容
     if (!postData.value.id) {
         const d = new Date()
@@ -129,6 +138,10 @@ const save = () => {
 </script>
 
 <style scoped>
+.highlight {
+    color: #0c9;
+}
+
 .title {
     display: flex;
     align-items: center;
@@ -137,11 +150,17 @@ const save = () => {
     margin-top: 50px;
 }
 
+select{
+    height: 30px;
+    margin-left: 20px;
+}
 
 .fixed_bar {
     position: fixed;
     right: 20px;
     top: 50%;
+    max-height: 400px;
+    overflow-y: auto;
 }
 
 .bar_box {

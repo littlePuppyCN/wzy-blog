@@ -3,6 +3,7 @@
 *{
   margin: 0;
   padding: 0;
+  user-select: none;
 }
 
 :root{
@@ -131,4 +132,10 @@ body,
   width: 500px;
   overflow: hidden;
   text-align: center;
+}
+
+.tags{
+  padding: 2px 8px;
+  background: #e9e9e9;
+  border-radius: 10px;
 }

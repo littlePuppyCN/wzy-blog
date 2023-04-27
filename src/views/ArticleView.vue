@@ -9,15 +9,15 @@
                             placeholder="搜索文章..">
                         <button @click="search">查找文章</button>
                     </div>
-                    <div v-for="c in data" :key="c.id" class="box_shadow scale contents" @click="() => showArcticle(c)">
+                    <div v-for="c in getLists" :key="c.id" class="box_shadow scale contents" @click="() => showArcticle(c)">
                         {{ c.title }}
                     </div>
                     <div class="empty" v-if="data.length === 0">
                         暂无相关文章
                     </div>
                 </Card>
+                <Page :total="data.length" :size="10" @onChange="onChange" />
             </div>
-
         </template>
     </Layout>
 </template>
@@ -25,17 +25,30 @@
 <script setup>
 import Layout from './Layout.vue'
 import { useRouter } from 'vue-router'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { store } from '@/stores/db'
 import Card from '../components/Card.vue'
+import Page from '../components/Page.vue'
 const router = useRouter()
 
 const keywords = ref(null)
 const data = ref(store.DB.list)
+const curPage = ref(1)
 
 const showArcticle = (value) => {
     router.push({ path: '/post', query: { id: value.id } })
 }
+
+const onChange = (p) => {
+    curPage.value = p
+}
+
+const getLists = computed(() => {
+    const start = curPage.value * 10 - 9
+    const end = curPage.value * 10
+    return data.value.slice(start - 1, end - 1)
+})
+
 
 const search = () => {
     if (keywords.value !== null) {
@@ -56,35 +69,37 @@ const search = () => {
 </script>
   
 <style scoped>
-.empty{
+.empty {
     height: 350px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 @keyframes moto {
-    0%{
+    0% {
         background-position: -350px;
         opacity: 1;
     }
 
-    100%{
+    100% {
         opacity: 0.1;
         background-position: 310px;
     }
-    
+
 }
+
 .list::before {
     width: 100%;
     height: 100%;
-    content:'';
+    content: '';
     display: block;
     position: absolute;
     background-image: url('@/assets/trans_sun.jpg');
     background-repeat: no-repeat;
     background-size: 40%;
     background-position: 310px center;
-    animation: moto 2s ease-in-out; 
+    animation: moto 2s ease-in-out;
     opacity: 0.1;
 }
 

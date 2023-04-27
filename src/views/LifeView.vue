@@ -5,7 +5,8 @@
                 <Card :style="{
                         'display': 'flex',
                         'flex-direction': 'row',
-                        'justify-content': 'space-between'
+                        'justify-content': 'space-between',
+                        'flex-wrap':'wrap'
                     }">
                     <Lazyload v-for="i in store.DB.life" :src="i.content" :key="i.id" :width="470" :height="330" />
                 </Card>

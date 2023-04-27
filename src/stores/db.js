@@ -1,5 +1,6 @@
 import { reactive} from 'vue'
 import storage from '@/utils/storage.js'
+import {localdb} from '@/stores/localdb'
 
 const initial = {
     list:[],
@@ -13,11 +14,11 @@ const initial = {
 const storageDB = storage.getItem('DB')
 
 export const store = reactive({
-    DB: initial,
+    DB: localdb,
     initDB(){
         if(!storageDB){
-            storage.setItem('DB',initial)
-            this.DB.list = initial.list
+            storage.setItem('DB',localdb)
+            this.DB.list = localdb.list
         }else{
             this.DB = storageDB
         }

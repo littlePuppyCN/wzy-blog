@@ -14,7 +14,7 @@ import Card from './Card.vue';
                 <span>本系统由</span>
                 <span>Vue3.0</span>
                 <span>Vue Router</span>
-                <span>Pinia</span>
+                <span>Vite</span>
                 <span>vercel</span>
                 <span>搭建</span>
             </div>

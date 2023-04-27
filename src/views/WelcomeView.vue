@@ -4,9 +4,8 @@ import WordSpeaker from '../components/WordSpeaker.vue'
 import Introduce from '../components/Introduce.vue'
 import PreArticles from '../components/PreArticles.vue'
 import Layout from './Layout.vue'
-import { ref } from 'vue'
-import { store as storeDB } from '@/stores/db.js'
-
+import Next from '../components/Next.vue'
+import Contact from '../components/Contact.vue'
 const onScroll = () => {
   document.querySelector('.layout').scrollIntoView({ behavior: 'smooth' })
   store.visible()
@@ -34,11 +33,9 @@ const onScroll = () => {
         </div>
         <div class="sidebar">
           <Introduce />
-          <div class="next">
-            {{ storeDB.DB.next[0]?.content }}...✔️
-          </div>
+          <Next />
+          <Contact />
         </div>
-
       </div>
     </template>
   </Layout>
@@ -71,9 +68,6 @@ section {
   overflow: hidden;
   height: 2000px;
 }
-
-
-
 
 h1 {
   transform: scale(1.5) skewX(-20deg);

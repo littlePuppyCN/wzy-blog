@@ -4,9 +4,12 @@
         </div>
         <div class="info ">
             <p>{{ getTime }}，</p>
-            <p>我是<span style="color:#013485;">梓扬</span> </p>
-            <p><span style="color:#013485;">待业</span>前端工程师</p>
+            <p>我是<span style="color:#3273dc;">梓扬</span> </p>
+            <p><span style="color:#3273dc;">待业</span>前端工程师</p>
             <p>这是我的个人博客</p>
+            <div class="bilibili">
+                <a href="https://space.bilibili.com/1275574" target="_blank">哔哩哔哩 Bilibili</a>
+            </div>
         </div>
     </div>
 </template>
@@ -48,10 +51,28 @@ const getTime = computed(() => {
 }
 
 .info {
-    font-size: 1.3em;
     padding: 20px;
     border-radius: 0 0 8px 8px;
     background-color: white;
     color: black;
+}
+.info p{
+    font-size: 1.3em;
+}
+.bilibili {
+    text-align: center;
+    background-color: #3273dc;
+    border-radius: 20px;
+    margin-top: 13px;
+    line-height: 28px;
+}
+
+.bilibili:hover{
+    background-color: #276cda;
+}
+
+a {
+    color: white;
+    text-decoration: none;
 }
 </style>

@@ -15,12 +15,12 @@ const speaker = () => {
                 return r()
             }
             timeSpeak.value += wordToArray.shift() 
-        }, 80)
+        }, 60)
     }).then(res => {
         setTimeout(() => {
             cn.value = true
             timeSpeak.value = ''
-        }, 3000)
+        }, 2000)
     })
 }
 

@@ -8,7 +8,6 @@ import { onMounted, ref } from 'vue'
 const props = defineProps(['src', 'width', 'height'])
 const show = ref(false)
 
-console.log(props.src)
 onMounted(() => {
     new Promise((resolve) => {
         let img = new Image()

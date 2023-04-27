@@ -1,33 +1,46 @@
 <template>
-    <Card :style="{ 'margin-bottom': '20px' ,'cursor':'pointer'}" @click="showArcticle(article)" :config="{ scale: true }"
-        v-for="article in DB.list" :key="article.id">
+    <Card :style="{ 'margin-bottom': '20px', 'cursor': 'pointer' }" @click="showArcticle(article)" :config="{ scale: true }"
+        v-for="article in getLists" :key="article.id">
         <h1>{{ article.title }}</h1>
         <div style="height:90px; overflow: hidden;">
             <p>{{ article.content }}</p>
 
         </div>
         <div class="bot">
-            <div>{{ article.update }}</div>
+            <div class="tags">{{ article.update }}</div>
             <div class="tags">
-                <!-- <div v-for="t in tags" :key="t">
-                    {{ t }}
-                </div> -->
-                vue react
+                {{ article.tags }}
             </div>
         </div>
     </Card>
+    <Page :total="DB.list.length" :size="5" @onChange="onChange" />
 </template>
 
 <script setup>
+import { computed ,ref} from 'vue'
 import Card from '../components/Card.vue'
 import { store } from '@/stores/db'
 import { useRouter } from 'vue-router'
+import Page from '../components/Page.vue'
+const curPage = ref(1)
+
 const router = useRouter()
 
 const { DB } = store
+
+const onChange = (p) => {
+    curPage.value = p
+}
+
 const showArcticle = (value) => {
     router.push({ path: '/post', query: { id: value.id } })
 }
+
+const getLists = computed(() => {
+    const start = curPage.value * 5 - 4
+    const end = curPage.value * 5
+    return DB.list.slice(start - 1, end)
+})
 
 </script>
 
