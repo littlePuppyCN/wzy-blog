@@ -33,7 +33,7 @@ const onClick = (evt) => {
                 {{ now }}
             </div>
             <div class="ho" :tab="6" style="margin-right:10px;">
-                <router-link to="/markdown">进度</router-link>
+                <router-link to="/game">小游戏</router-link>
             </div>
         </nav>
     </header>
