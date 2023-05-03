@@ -1,5 +1,5 @@
 <template>
-    <div class="load" :style="{ width: props.width+'px', height: props.height+'px' }" v-if="!show"></div>
+    <div class="load" :style="{ width: props.width+'px', height: props.height+'px' }" v-if="!show">加载中...</div>
     <img v-else :width="props.width" :height="props.height" :src="props.src" alt="">
 </template>
 
@@ -25,9 +25,8 @@ onMounted(() => {
 
 <style scoped>
 .load {
-    background-image: url('https://img.lzxjack.top/img/202203302022741.webp');
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
 </style>

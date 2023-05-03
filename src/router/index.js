@@ -1,4 +1,8 @@
 import { createRouter, createWebHistory ,createWebHashHistory} from 'vue-router'
+import Article from '../views/ArticleView.vue'
+import Life from '../views/LifeView.vue'
+import Game from '../views/GameView.vue'
+import About from '../views/AboutView.vue'
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
@@ -10,13 +14,13 @@ const router = createRouter({
     {
       path: '/article',
       name: 'article',
-      component: () => import('../views/ArticleView.vue')
+      component: Article
 
     },
     {
       path: '/life',
       name: 'life',
-      component: () => import('../views/LifeView.vue')
+      component: Life
 
     },
     {
@@ -28,13 +32,13 @@ const router = createRouter({
     {
       path: '/game',
       name: 'game',
-      component: () => import('../views/GameView.vue')
+      component: Game
 
     },
     {
       path: '/about',
       name: 'about',
-      component: () => import('../views/AboutView.vue')
+      component: About
 
     },
     {
