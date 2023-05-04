@@ -1,16 +1,16 @@
 import { createRouter, createWebHistory ,createWebHashHistory} from 'vue-router'
-import Welcome from '../views/WelcomeView'
+// import Welcome from '../views/WelcomeView'
 import Article from '../views/ArticleView.vue'
-import Life from '../views/LifeView.vue'
-import Game from '../views/GameView.vue'
-import About from '../views/AboutView.vue'
+// import Life from '../views/LifeView.vue'
+// import Game from '../views/GameView.vue'
+// import About from '../views/AboutView.vue'
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
       name: 'welcome',
-      component: Welcome
+      component: () => import('../views/WelcomeView.vue')
     },
     {
       path: '/article',
@@ -21,7 +21,7 @@ const router = createRouter({
     {
       path: '/life',
       name: 'life',
-      component: Life
+      component: () => import('../views/LifeView.vue')
 
     },
     {
@@ -33,13 +33,13 @@ const router = createRouter({
     {
       path: '/game',
       name: 'game',
-      component: Game
+      component: () => import('../views/GameView.vue')
 
     },
     {
       path: '/about',
       name: 'about',
-      component: About
+      component: () => import('../views/AboutView.vue')
 
     },
     {
