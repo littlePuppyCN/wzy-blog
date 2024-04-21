@@ -9,12 +9,20 @@ const props = defineProps(['config', 'style'])
 </script>
 
 <style  scoped>
+/* @media (max-width: 1024px) { */
+  /* .card{
+    background-color: #fbfbfb;
+    color: black;
+  } */
+/* } */
 .card {
     /* height: 220px; */
     /* color: black; */
     padding: 20px;
     display: flex;
     flex-direction: column;
+    background-color: #fbfbfb;
+    color: #2c3e50;
 }
 
 h1 {

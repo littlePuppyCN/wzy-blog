@@ -41,9 +41,15 @@ onMounted(() => {
 </script>
 
 <style scoped>
+@media (max-width: 1024px) {
+ .title{
+    color: #fbfbfb!important;
+ }
+}
 .title {
     color: black;
 }
+
 
 .update {
     margin-top: 10px;
