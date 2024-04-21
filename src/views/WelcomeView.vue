@@ -23,6 +23,36 @@ const onScroll = () => {
       <h1>
         <WordSpeaker :words="{ en: `What Doesn't Kill You Makes You Stronger!`, cn: '斗罢艰险，又出发！' }" />
       </h1>
+      <div class="fastGo">
+        <div>
+          <a href="https://cn.vuejs.org/">
+            <svg class="logo" viewBox="0 0 128 128" width="30" height="30" data-v-0495d436="">
+              <path fill="#42b883" d="M78.8,10L64,35.4L49.2,10H0l64,110l64-110C128,10,78.8,10,78.8,10z"
+                data-v-0495d436=""></path>
+              <path fill="#35495e" d="M78.8,10L64,35.4L49.2,10H25.6L64,76l38.4-66H78.8z" data-v-0495d436=""></path>
+            </svg>
+            <span>Vue.js</span>
+          </a>
+        </div>
+        <div>
+          <a href="https://es6.ruanyifeng.com/">
+            <svg width="30" height="30" xmlns="http://www.w3.org/2000/svg" style="background-color:rgb(247, 222, 31);">
+              <text x="50%" y="50%" text-anchor="middle" alignment-baseline="middle" fill="black" font-size="14"
+                font-family="Arial">
+                ES
+              </text>
+            </svg>
+            <span>ES6</span>
+          </a>
+
+        </div>
+        <div>
+          <a href="https://chat.baidu.com/">
+            <img style="width: 30px;height: 30px;" src="https://gips0.baidu.com/it/u=2675190506,1465883752&fm=3028&app=3028&f=PNG&fmt=auto&q=75&size=f84_84" alt="">
+            <span>Baidu_Ai</span>
+          </a>
+        </div>
+      </div>
       <div class="scroll"><span @click="onScroll">》</span></div>
     </template>
 
@@ -42,18 +72,50 @@ const onScroll = () => {
 </template>
 
 <style scoped>
+.fastGo {
+  display: none;
+}
+
 @media (max-width: 1024px) {
   h1 {
     display: none;
   }
 
+  a {
+    text-decoration: none;
+    display: flex;
+    color: #fbfbfb;
+    align-items: center;
+    margin-top: 30px;
+  }
+
   .phone {
     flex-direction: column;
   }
-  .sidebar{
-    width: 100%!important;
-    margin-left: 0!important;
+
+  .sidebar {
+    width: 100% !important;
+    margin-left: 0 !important;
     margin-top: 20px;
+  }
+
+  .fastGo {
+    display: block;
+  }
+
+  .fastGo>div {
+    display: flex;
+    align-items: center;
+  }
+
+  .fastGo span {
+    font-size: 16px;
+    font-weight: 500;
+    margin-left: 10px;
+  }
+
+  .fastGo>div a:active {
+    opacity: .6;
   }
 }
 
