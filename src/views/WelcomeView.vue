@@ -89,6 +89,19 @@ const onScroll = () => {
     margin-top: 30px;
   }
 
+  /* .fastGo div:nth-child(1)  a{
+    transform: translateX(-50px) translateY(-20px);
+
+  }
+
+  .fastGo div:nth-child(2)  a{
+    transform: translateX(0px);
+  }
+
+  .fastGo div:nth-child(3)  a{
+    transform: translateX(30px) translateY(20px);
+  } */
+
   .phone {
     flex-direction: column;
   }
@@ -101,6 +114,7 @@ const onScroll = () => {
 
   .fastGo {
     display: block;
+    transform: translateY(-56px);
   }
 
   .fastGo>div {
