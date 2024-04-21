@@ -1,7 +1,12 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, onBeforeMount } from 'vue'
 import { RouterView } from 'vue-router'
 import { store } from '@/stores/db'
+import storage from '@/utils/storage.js'
+
+onBeforeMount(() =>{
+  storage.removeItem('DB')
+})
 
 onMounted(() => {
   store.initDB()
