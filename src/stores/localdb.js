@@ -1,6 +1,13 @@
 export const localdb =   {
   "list": [
       {
+          "id": 1713713461459,
+          "content": "这是一个测试这是一个测试这是一个测试这是一个测试这是一个测试这是一个测试这是一个测试这是一个测试这是一个测试这是一个测试这是一个测试这是一个测试这是一个测试这是一个测试这是一个测试这是一个测试这是一个测试这是一个测试这是一个测试这是一个测试这是一个测试这是一个测试这是一个测试这是一个测试这是一个测试这是一个测试这是一个测试",
+          "title": "这是一个测试",
+          "update": "2024/4/21 23:31:01",
+          "tags": "vue"
+      },
+      {
           "id": 1713496449990,
           "content": "# Map\n------------------------------------\nJs的对象（Object）,本质上是键值对的集合（Hash结构），但是传统上只能用字符串当做键。\n``` js\nconst data = {}\nconst element = document.getElementById('myDiv')\n\ndata[element] = 'metadata'\ndata['[object HTMLDivElement]'] //'metadata'\n```\n上面代码原意是将一个DOM节点作为对象data的键，但是由于对象只接受字符串作为键名，所以element被自动转为字符串[object HTMLDivElement]。\n\n为了解决这个问题，ES6提供了Map数据结构。它类似于对象，也是键值对的集合，但是“键”的范围不限于字符串，各种类型的值（包括对象）都可以当做键。\n也就是说，Object结构提供了“字符串——值”的对象，Map结构提供了“值——值”的对应，是一种更完善的Hash结构实现。如果你需要“键值对”的数据结构，Map比Object更合适。\n\n``` js\nconst m = new Map()\nconst o = {p:'hello world'}\n\nm.set(o,'content')\nm.get(o) //\"content\"\n\nm.has(o) // true\nm.delete(o) // true\nm.has(o) // false\n```\n上面的例子展示了如何向Map添加成员。作为构造函数，Map也可以接受一个数组作为参。该数组成员是一个个表示键值对的数组。\n``` js\nconst map = new Map([\n  ['name','张三']\n  ['title','Author']\n])\n\nm.size // 2\nm.has('name') // true\nmap.get('name') // true\nmap.has('title') // true\nmap.get('title') // \"Author\"\n```\nMap构造函数接受数组作为参数，实际上执行的是下面的算法。\n```js\nconst items = [\n  ['name', '张三'],\n  ['title', 'Author']\n];\n\nconst map = new Map();\n\nitems.forEach(\n  ([key, value]) => map.set(key, value)\n);\n```\n\n",
           "title": "Map和Set",
