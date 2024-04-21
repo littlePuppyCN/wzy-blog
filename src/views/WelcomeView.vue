@@ -8,6 +8,7 @@ import Next from '../components/Next.vue'
 import Contact from '../components/Contact.vue'
 const onScroll = () => {
   document.querySelector('.layout').scrollIntoView({ behavior: 'smooth' })
+  if(window.innerWidth < 1000) return
   store.visible()
 }
 
