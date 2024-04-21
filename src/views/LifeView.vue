@@ -32,4 +32,14 @@ const getUrl = computed(() => {
 
 </script>
   
-<style scoped></style>
+<style scoped>
+@media (max-width: 1024px) {
+   .w1000 > div{
+    padding: 0!important;
+   }
+   .w1000 img{
+    margin-top: 10px;
+    width: 100%;
+   }
+}
+</style>

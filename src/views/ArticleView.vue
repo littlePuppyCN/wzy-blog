@@ -10,7 +10,12 @@
                         <button @click="search">查找文章</button>
                     </div>
                     <div v-for="c in getLists" :key="c.id" class="box_shadow scale contents" @click="() => showArcticle(c)">
-                        {{ c.title }}
+                        <div class="tag" v-if="c.tags">
+                            {{  c.tags }}
+                        </div>
+                        <div>
+                            {{ c.title }}
+                        </div>
                     </div>
                     <div class="empty" v-if="data.length === 0">
                         暂无相关文章
@@ -42,7 +47,7 @@ const showArcticle = (value) => {
 const onChange = (p) => {
     curPage.value = p
 }
-
+console.log(data.value)
 const getLists = computed(() => {
     const start = curPage.value * 10 - 9
     const end = curPage.value * 10
@@ -69,6 +74,25 @@ const search = () => {
 </script>
   
 <style scoped>
+@media (max-width: 1024px) {
+   .w1000{
+    width: 100%!important;
+   }
+   .tag{
+    display: none;
+   }
+   .list::before{
+    background-position: 50%!important;
+   }
+}
+.tag{
+    position: absolute;
+    left:20px;
+    font-size: 15px;
+    border-radius: 8px;
+    padding: 2px 8px;
+    background-color: rgb(225 225 225);
+}
 .empty {
     height: 350px;
     display: flex;

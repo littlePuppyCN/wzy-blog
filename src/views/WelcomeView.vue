@@ -27,7 +27,7 @@ const onScroll = () => {
     </template>
 
     <template #content>
-      <div style="display: flex;">
+      <div class="phone" style="display: flex;">
         <div class="articles">
           <PreArticles />
         </div>
@@ -42,6 +42,21 @@ const onScroll = () => {
 </template>
 
 <style scoped>
+@media (max-width: 1024px) {
+  h1 {
+    display: none;
+  }
+
+  .phone {
+    flex-direction: column;
+  }
+  .sidebar{
+    width: 100%!important;
+    margin-left: 0!important;
+    margin-top: 20px;
+  }
+}
+
 .mask {
   position: absolute;
   width: 100%;

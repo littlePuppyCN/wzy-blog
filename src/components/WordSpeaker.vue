@@ -14,7 +14,7 @@ const speaker = () => {
                 clearInterval(timer)
                 return r()
             }
-            timeSpeak.value += wordToArray.shift() 
+            timeSpeak.value += wordToArray.shift()
         }, 60)
     }).then(res => {
         setTimeout(() => {

@@ -5,6 +5,9 @@
   
 <script setup>
 import Layout from './Layout.vue';
+
+const m = new Map()
+
 </script>
   
 <style scoped>

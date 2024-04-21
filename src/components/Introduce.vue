@@ -40,6 +40,12 @@ const getTime = computed(() => {
 </script>
 
 <style scoped>
+@media (max-width: 1024px) {
+    .introduce {
+        background-size: contain!important;
+    }
+}
+
 .introduce {
     height: 220px;
     border-radius: 8px 8px 0 0;
@@ -56,9 +62,11 @@ const getTime = computed(() => {
     background-color: white;
     color: black;
 }
-.info p{
+
+.info p {
     font-size: 1.3em;
 }
+
 .bilibili {
     text-align: center;
     background-color: #3273dc;
@@ -67,7 +75,7 @@ const getTime = computed(() => {
     line-height: 28px;
 }
 
-.bilibili:hover{
+.bilibili:hover {
     background-color: #276cda;
 }
 

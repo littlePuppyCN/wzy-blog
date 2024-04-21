@@ -27,7 +27,7 @@ export const store = reactive({
         storage.setItem('DB',this.DB)
     },
     addArticle(value,type){
-        this.DB[type].push(value)
+        this.DB[type].unshift(value)
         storage.setItem('DB',this.DB)
     },
     deleteArticle(id,type){

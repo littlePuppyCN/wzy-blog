@@ -10,10 +10,6 @@ onMounted(() => {
     },1000)
 })
 
-const onClick = (evt) => {
-    console.log(evt)
-}
-
 </script>
 
 <template>
@@ -42,7 +38,26 @@ const onClick = (evt) => {
 <style scoped>
 @media (max-width: 1024px) {
     header {
-        display: none !important;
+        /* display: none !important; */
+        width: 80%;
+        display: flex;
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 12;
+    }
+    nav{
+        width: 100%;
+    }
+    nav > div:last-child{
+        display: none;
+    }
+
+    .navs{
+        width: auto!important;
+    }
+    .navs div{
+        margin-left: 20px;
     }
 }
 

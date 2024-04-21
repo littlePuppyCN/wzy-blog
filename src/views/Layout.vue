@@ -32,6 +32,7 @@ main {
     width: 100%;
     min-height: calc(100vh - 100px);
     position: relative;
+    overflow: hidden;
 }
 
 .title {
