@@ -8,7 +8,7 @@
                         'justify-content': 'space-between',
                         'flex-wrap':'wrap'
                     }">
-                    <Lazyload v-for="i in store.DB.life" :src="i.content" :key="i.id" :width="470" :height="330" />
+                    <Lazyload  v-for="i in store.DB.life" :src="i.content" :key="i.id" :id="i.id" :width="470" :height="360" />
                 </Card>
             </div>
         </template>
@@ -20,15 +20,8 @@ import Layout from './Layout.vue';
 import Lazyload from '../components/Lazyload.vue';
 import Card from '../components/Card.vue';
 import { store } from '@/stores/db';
-import { computed } from 'vue';
-
-const getUrl = computed(() => {
-    return (url) => {
-        const firstIndex = url.indexOf('(')
-        const lastIndex = url.lastIndexOf(')')
-        return  url.slice(firstIndex + 1, lastIndex)
-    }
-})
+import { useLazy } from '../utils/lazy';
+useLazy(store.DB.life)
 
 </script>
   
