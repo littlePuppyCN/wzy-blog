@@ -1,5 +1,5 @@
 <template>
-  <Layout :style="{ 'height': '500px' }" :bg="'about'">
+  <Layout :style="{ 'height': '500px' }" :bg="'article'">
     <template #content>
       <div class="w1000">
         <Card>
