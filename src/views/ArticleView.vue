@@ -127,6 +127,10 @@ const search = () => {
     opacity: 0.1;
 }
 
+.isJs {
+    background-color: #bfa;
+}
+
 .search_bar {
     display: flex;
     justify-content: center;

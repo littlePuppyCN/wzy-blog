@@ -9,20 +9,29 @@
                     <div>{{ t.title }}</div>
                 </div>
             </div>
-            <h1 class="title">
-                <label for="article_title">{{ getTitle }}</label><input class="global_input" type="text"
-                    v-model="postData.title">
-                <select v-model="selectValue" @change="changeOptions">
-                    <option value='none' disabled>请选择</option>
-                    <option v-for="o in options" :value="o.text" :key="o.text">{{o.text}}</option>
-                </select>
-            </h1>
-            <v-md-editor :disabled-menus="[]" @upload-image="handleUploadImage" v-model="postData.content" height="500px"
-                @save="save"></v-md-editor>
+            <div v-if="postType !== 'echarts'">
+                <h1 class="title">
+                    <label for="article_title">{{ getTitle }}</label><input class="global_input" type="text"
+                        v-model="postData.title">
+                    <select v-model="selectValue" @change="changeOptions">
+                        <option value='none' disabled>请选择</option>
+                        <option v-for="o in options" :value="o.text" :key="o.text">{{ o.text }}</option>
+                    </select>
+                </h1>
+                <v-md-editor :disabled-menus="[]" @upload-image="handleUploadImage" v-model="postData.content"
+                    height="500px" @save="save"></v-md-editor>
+            </div>
+            <div v-else>
+                
+                <input v-model="fat" style="height: 50px;" type="text">
+                <button @click="echartConfirm" style="height: 50px;">确定</button>
+                <Charts :data="chartData" />
+            </div>
         </template>
     </Layout>
-    <div class="fixed_bar scale box_shadow" v-if="store.DB[postType].length">
-        <Card>
+    <!-- <div class="fixed_bar scale box_shadow" v-if="store.DB[postType].length"> -->
+        <div class="fixed_bar scale box_shadow">
+        <Card v-if="postType !== 'echarts'">
             <div class="bar_box" v-for="c in store.DB[postType]" :key="c.id">
                 <div class="bar_title" :title="c.title">{{ c.title }}</div>
                 <div class="options">
@@ -39,12 +48,34 @@ import { computed, onMounted, onUnmounted, ref } from 'vue'
 import Layout from './Layout.vue'
 import { store } from '@/stores/db'
 import Card from '../components/Card.vue'
+import Charts from '../components/Charts.vue'
 import { getUrlBase64 } from '@/utils/base64.js'
+import storage from '../utils/storage'
 
 const postType = ref('list')
 const selectValue = ref('none')
+const fat = ref(0)
 
-const options = [{ text: 'javascript' }, { text: 'vue' }, { text: 'react' }, { text: 'html' }, { text: '性能优化' },{text:'有感而发'},{text:'摩托车说'}]
+const chartData = ref(storage.getItem('FAT') || {})
+
+const echartConfirm = () => {
+    let i = storage.getItem('FAT')
+    if(i === null) {
+        storage.setItem('FAT',{date:[],fat:[]})
+    }else{
+        const d = new Date()
+        const month = d.getMonth() + 1
+        const day = d.getDate()
+        
+        i.date.push(month + '/' + day)
+        i.fat.push(fat.value)
+        chartData.value = i
+        storage.setItem('FAT',i)
+    }
+}
+
+
+const options = [{ text: 'javascript' }, { text: 'vue' }, { text: 'react' }, { text: 'html' }, { text: '性能优化' }, { text: '有感而发' }, { text: '摩托车说' }]
 
 const types = ref([
     { name: 'list', title: '文章' },
@@ -52,7 +83,8 @@ const types = ref([
     { name: 'msg', title: '留言板' },
     { name: 'friend', title: '友链' },
     { name: 'next', title: '待办' },
-    { name: 'construct', title: '建站' }]
+    { name: 'construct', title: '建站' },
+    { name: 'echarts', title: '图表' }]
 )
 
 const handleUploadImage = (event, insertImage, files) => {
@@ -70,7 +102,7 @@ const postData = ref(
         content: '',
         title: '',
         update: null,
-        tags:''
+        tags: ''
     }
 )
 
@@ -78,12 +110,13 @@ const getTitle = computed(() => (types.value.find((t) => t.name === postType.val
 
 const changeOptions = (evt) => {
     const type = evt.target.value
-    if(postData.value.tags.includes(type)) return 
+    if (postData.value.tags.includes(type)) return
     postData.value.tags = evt.target.value
-} 
+}
 
 const changeType = (v) => {
     postType.value = v
+    console.log(v)
     reset()
 }
 
@@ -106,7 +139,7 @@ const reset = () => {
         content: '',
         title: '',
         update: null,
-        tags:''
+        tags: '',
     }
     selectValue.value = 'none'
 }
@@ -116,6 +149,7 @@ const save = () => {
         alert('至少需要一个文章标题')
         return
     }
+
 
     // 新内容
     if (!postData.value.id) {
@@ -150,7 +184,7 @@ const save = () => {
     margin-top: 50px;
 }
 
-select{
+select {
     height: 30px;
     margin-left: 20px;
 }

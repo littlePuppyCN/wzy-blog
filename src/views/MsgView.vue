@@ -1,50 +1,35 @@
 <template>
-        <div>        <img src="../assets/zy_low.webp" alt=""></div>
-        <div>        <img src="../assets/zy_low.webp" alt=""></div>
-        <div>        <img src="../assets/zy_low.webp" alt=""></div>
-        <div>        <img src="../assets/zy_low.webp" alt=""></div>
-        <div>        <img src="../assets/zy_low.webp" alt=""></div>
-        <div>        <img src="../assets/zy_low.webp" alt=""></div>
-        <div>        <img src="../assets/zy_low.webp" alt=""></div>
-        <div>        <img src="../assets/zy_low.webp" alt=""></div>
-        <div>        <img src="../assets/zy_low.webp" alt=""></div>
-        <div>        <img src="../assets/zy_low.webp" alt=""></div>
-        <div>        <img src="../assets/zy_low.webp" alt=""></div>
-        <div>        <img src="../assets/zy_low.webp" alt=""></div>
-        <div>        <img src="../assets/zy_low.webp" alt=""></div>
-        <div>        <img src="../assets/zy_low.webp" alt=""></div>
-        <div>        <img src="../assets/zy_low.webp" alt=""></div>
-        <div>        <img src="../assets/zy_low.webp" alt=""></div>
-        <div>        <img src="../assets/zy_low.webp" alt=""></div>
-        <div>        <img src="../assets/zy_low.webp" alt=""></div>
-        <div>        <img src="../assets/zy_low.webp" alt=""></div>
+    <Layout :style="{ 'height': '500px' }" :bg="'article'">
+        <template #content>
+            <div class="w1000">
+                <div class="game" @click="click">
+                    <div v-for="bb in b.initBg()"
+                        :style="{ position: 'absolute', left: bb.x + 'px', top: bb.y + 'px', width: 50 + 'px', height: 50 + 'px', fontSize: 12 + 'px', border: '1px solid black' }">
+                        {{ bb.x }},{{ bb.y }}
+                    </div>
 
-
+                    <div v-for="bb in b.shape"
+                        :style="{ background: 'green', position: 'absolute', left: bb.x + 'px', top: bb.y + 'px', width: 50 + 'px', height: 50 + 'px', fontSize: 12 + 'px' }">
+                        {{ bb }}
+                    </div>
+                </div>
+            </div>
+        </template>
+    </Layout>
 </template>
 
 <script setup>
 import { onMounted, reactive, ref, watch } from 'vue';
 import Layout from './Layout.vue';
 
-const observer = new IntersectionObserver(entries => {
-        for (const i of entries) {
-                if (i.isIntersecting) {
-                        setTimeout(() => {
-                                i.target.setAttribute('src', '/src/assets/trans_sun.jpg')
-                        }, 1000)
-                        observer.unobserve(i.target)
-                }
-        }
-})
-
-onMounted(() => {
-        const images = document.getElementsByTagName('img')
-        console.log(images)
-        for (const i of images) {
-                observer.observe(i)
-        }
-})
-
+cs.sayNo()
 </script>
 
-<style scoped></style>
+<style scoped>
+.game {
+    position: relative;
+    width: 100%;
+
+    height: 1600px;
+}
+</style>
