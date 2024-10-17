@@ -2,7 +2,12 @@
     <Layout :style="{ 'height': '500px' }" :bg="'article'">
         <template #content>
             <div class="w1000">
-                <Charts :data="storage.getItem('FAT') || {}" />
+
+                <Card :style="{'margin':'0 0 30px 0'}">
+                    <h2 style="text-align: center;">体重记录</h2>
+                    <Charts :data="storage.getItem('FAT') || {}" />
+                </Card>
+                
                 <Card :style="{
                     'display': 'flex',
                     'flex-direction': 'row',
