@@ -22,7 +22,7 @@
                     height="500px" @save="save"></v-md-editor>
             </div>
             <div v-else>
-                
+
                 <input v-model="fat" style="height: 50px;" type="text">
                 <button @click="echartConfirm" style="height: 50px;">确定</button>
                 <Charts :data="chartData" />
@@ -30,7 +30,7 @@
         </template>
     </Layout>
     <!-- <div class="fixed_bar scale box_shadow" v-if="store.DB[postType].length"> -->
-        <div class="fixed_bar scale box_shadow">
+    <div class="fixed_bar scale box_shadow">
         <Card v-if="postType !== 'echarts'">
             <div class="bar_box" v-for="c in store.DB[postType]" :key="c.id">
                 <div class="bar_title" :title="c.title">{{ c.title }}</div>
@@ -56,21 +56,19 @@ const postType = ref('list')
 const selectValue = ref('none')
 const fat = ref(0)
 
-const chartData = ref(storage.getItem('FAT') || {})
+const chartData = ref(store.DB.fat || {})
 
 const echartConfirm = () => {
-    let i = storage.getItem('FAT')
-    if(i === null) {
-        storage.setItem('FAT',{date:[],fat:[]})
-    }else{
+    let i = store.DB.fat
+    if (i) {
         const d = new Date()
         const month = d.getMonth() + 1
         const day = d.getDate()
-        
-        i.date.push(month + '/' + day)
-        i.fat.push(fat.value)
+
+        store.recordFat(fat.value, month + '/' + day)
+
         chartData.value = i
-        storage.setItem('FAT',i)
+
     }
 }
 

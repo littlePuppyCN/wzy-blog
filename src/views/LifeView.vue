@@ -5,7 +5,7 @@
 
                 <Card :style="{'margin':'0 0 30px 0'}">
                     <h2 style="text-align: center;">体重记录</h2>
-                    <Charts :data="storage.getItem('FAT') || {}" />
+                    <Charts :data="store.DB.fat || {}" />
                 </Card>
                 
                 <Card :style="{

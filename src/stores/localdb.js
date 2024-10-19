@@ -159,6 +159,7 @@ export const localdb =   {
             "tags": ""
         }
     ],
-    "img": null
+    "img": null,
+    "fat":{"date":["10/17","10/18","10/19"],"fat":["176.7","175.7","174.4"]}
 }
 

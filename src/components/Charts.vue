@@ -12,8 +12,10 @@ const canvas = ref(null)
 
 watch(() => props.data,
     (n, o) => {
+        console.log(n)
         initChart(n)
-    }
+    },
+    {deep:true}
 )
 
 

@@ -9,7 +9,8 @@ const initial = {
     friend:[],
     construct:[],
     next:[],
-    img:null
+    img:null,
+    fat:{}
 }
 const storageDB = storage.getItem('DB')
 
@@ -32,6 +33,11 @@ export const store = reactive({
     },
     deleteArticle(id,type){
         this.DB[type] = this.DB[type].filter(l => l.id !== id)
+        storage.setItem('DB',this.DB)
+    },
+    recordFat(val,day){
+        this.DB.fat.fat.push(val)
+        this.DB.fat.date.push(day)
         storage.setItem('DB',this.DB)
     },
     editArticle(val,type){
