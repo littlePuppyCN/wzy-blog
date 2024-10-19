@@ -9,19 +9,19 @@ import { nextTick, onMounted, ref, watch } from 'vue'
 import * as echarts from 'echarts';
 const props = defineProps(['data'])
 const canvas = ref(null)
+const chart = ref(null)
 
 watch(() => props.data,
     (n, o) => {
         console.log(n)
         initChart(n)
     },
-    {deep:true}
+    { deep: true }
 )
 
 
 
 const initChart = (d) => {
-    const chart = echarts.init(canvas.value)
     const option = {
         tooltip: {
             trigger: 'axis'
@@ -41,11 +41,13 @@ const initChart = (d) => {
             }
         ]
     };
-    chart.setOption(option)
+
+    chart.value.setOption(option)
 }
 
 
 onMounted(async () => {
+    chart.value = echarts.init(canvas.value)
     await nextTick()
     initChart(props.data)
 })
