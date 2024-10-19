@@ -9,7 +9,7 @@ import { nextTick, onMounted, ref, watch } from 'vue'
 import * as echarts from 'echarts';
 const props = defineProps(['data'])
 const canvas = ref(null)
-const chart = ref(null)
+var chart = null
 
 watch(() => props.data,
     (n, o) => {
@@ -22,16 +22,19 @@ watch(() => props.data,
 const initChart = (d) => {
     const option = {
         tooltip: {
-            trigger: 'axis'
+            show:true,
+            trigger:'axis',
+            formatter:function(p){
+                return p[0].value + ' 斤 '
+            },
         },
         xAxis: {
-            type: 'category',
-            data: d.date
+            data: d.date,
         },
         yAxis: {
             type: 'value',
             min: function (value) {
-                return value.min + 100;
+                return value.min - 35;
             }
         },
         series: [
@@ -43,12 +46,12 @@ const initChart = (d) => {
         ]
     };
 
-    chart.value.setOption(option)
+    chart.setOption(option)
 }
 
 
 onMounted(async () => {
-    chart.value = echarts.init(canvas.value)
+    chart = echarts.init(canvas.value)
     await nextTick()
     initChart(props.data)
 })
