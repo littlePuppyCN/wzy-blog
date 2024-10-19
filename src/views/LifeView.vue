@@ -7,6 +7,11 @@
                     <h2 style="text-align: center;">体重记录</h2>
                     <Charts :data="store.DB.fat || {}" />
                 </Card>
+
+                <Card :style="{'margin':'0 0 30px 0'}">
+                    <h2 style="text-align: center;">碳蛋脂转换器</h2>
+                    <Exchange />
+                </Card>
                 
                 <Card :style="{
                     'display': 'flex',
@@ -31,6 +36,7 @@ import { useLazy } from '../utils/lazy';
 import { onMounted, reactive, ref } from 'vue';
 import Charts from '../components/Charts.vue';
 import storage from '../utils/storage';
+import Exchange from '../components/Exchange.vue';
 let data = reactive([])
 useLazy(data)
 
