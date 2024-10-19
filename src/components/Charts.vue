@@ -19,8 +19,6 @@ watch(() => props.data,
     { deep: true }
 )
 
-
-
 const initChart = (d) => {
     const option = {
         tooltip: {
@@ -31,7 +29,10 @@ const initChart = (d) => {
             data: d.date
         },
         yAxis: {
-            type: 'value'
+            type: 'value',
+            min: function (value) {
+                return value.min + 100;
+            }
         },
         series: [
             {
