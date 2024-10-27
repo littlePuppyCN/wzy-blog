@@ -22,7 +22,7 @@ const onScroll = () => {
       <div class="mask">
       </div>
       <h1>
-        <WordSpeaker :words="{ en: `Never , Give Up!`, cn: '斗罢艰险，又出发！' }" />
+        <WordSpeaker :words="{ en: `Flames have paved my way. Through flames,I shan't stray.`, cn: '有经处有火，无火处无经。' }" />
       </h1>
       <div class="fastGo">
         <div>
