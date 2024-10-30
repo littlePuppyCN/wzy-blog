@@ -1,6 +1,13 @@
 export const localdb =  {
   "list": [
     {
+      "id": 1730276366358,
+      "content": "|大哑铃（3）|中哑铃（2）|小哑铃（1）|\n|-|-|-|\n|3KG|2.5KG|1.5KG|\n\n\n|胸|背|二头|三头|肩前束|肩后束|大腿|腹肌|\n|-|-|-|-|-|-|-|-|\n|332211|背|二头|三头|2211|肩后束|大腿|腹肌|\n|14KG|背|二头|三头|8KG|肩后束|大腿|腹肌|\n|9*8|x|x|x|10*6|x|x|x|\n",
+      "title": "力训记录",
+      "update": "2024/10/30 16:19:26",
+      "tags": "有感而发"
+    },
+    {
       "id": 1713713461459,
       "content": "ES5 的对象属性名都是字符串，这容易造成属性名的冲突。比如，你使用了一个他人提供的对象，但又想为这个对象添加新的方法（mixin 模式），新方法的名字就有可能与现有方法产生冲突。如果有一种机制，保证每个属性的名字都是独一无二的就好了，这样就从根本上防止属性名的冲突。这就是 ES6 引入Symbol的原因。\n\nES6 引入了一种新的原始数据类型Symbol，表示独一无二的值。它属于 JavaScript 语言的原生数据类型之一，其他数据类型是：undefined、null、布尔值（Boolean）、字符串（String）、数值（Number）、大整数（BigInt）、对象（Object）。\n\nSymbol 值通过Symbol()函数生成。这就是说，对象的属性名现在可以有两种类型，一种是原来就有的字符串，另一种就是新增的 Symbol 类型。凡是属性名属于 Symbol 类型，就都是独一无二的，可以保证不会与其他属性名产生冲突。\n```js\nlet s = Symbol();\n\ntypeof s\n// \"symbol\"\n```\n上面代码中，变量s就是一个独一无二的值。typeof运算符的结果，表明变量s是 Symbol 数据类型，而不是字符串之类的其他类型。\n\n注意，Symbol()函数前不能使用new命令，否则会报错。这是因为生成的 Symbol 是一个原始类型的值，不是对象，所以不能使用new命令来调用。另外，由于 Symbol 值不是对象，所以也不能添加属性。基本上，它是一种类似于字符串的数据类型。\n\nSymbol()函数可以接受一个字符串作为参数，表示对 Symbol 实例的描述。这主要是为了在控制台显示，或者转为字符串时，比较容易区分。\n```js\nlet s1 = Symbol('foo');\nlet s2 = Symbol('bar');\n\ns1 // Symbol(foo)\ns2 // Symbol(bar)\n\ns1.toString() // \"Symbol(foo)\"\ns2.toString() // \"Symbol(bar)\"\n```\n上面代码中，s1和s2是两个 Symbol 值。如果不加参数，它们在控制台的输出都是Symbol()，不利于区分。有了参数以后，就等于为它们加上了描述，输出的时候就能够分清，到底是哪一个值。\n\n如果 Symbol 的参数是一个对象，就会调用该对象的toString()方法，将其转为字符串，然后才生成一个 Symbol 值。\n```js\nconst obj = {\n  toString() {\n    return 'abc';\n  }\n};\nconst sym = Symbol(obj);\nsym // Symbol(abc)\n```\n注意，Symbol()函数的参数只是表示对当前 Symbol 值的描述，因此相同参数的Symbol函数的返回值是不相等的。\n```js\n// 没有参数的情况\nlet s1 = Symbol();\nlet s2 = Symbol();\n\ns1 === s2 // false\n\n// 有参数的情况\nlet s1 = Symbol('foo');\nlet s2 = Symbol('foo');\n\ns1 === s2 // false\n```\n上面代码中，s1和s2都是Symbol()函数的返回值，而且参数相同，但是它们是不相等的。事实上，如果调用100次Symbol()，会得到100个互不相等的值。\n\nSymbol 值不能与其他类型的值进行运算，会报错。\n```js\nlet sym = Symbol('My symbol');\n\n\"your symbol is \" + sym\n// TypeError: can't convert symbol to string\n`your symbol is ${sym}`\n// TypeError: can't convert symbol to string\n但是，Symbol 值可以显式转为字符串。\n\nlet sym = Symbol('My symbol');\n\nString(sym) // 'Symbol(My symbol)'\nsym.toString() // 'Symbol(My symbol)'\n```\n另外，Symbol 值也可以转为布尔值，但是不能转为数值。\n```js\nlet sym = Symbol();\nBoolean(sym) // true\n!sym  // false\n\nif (sym) {\n  // ...\n}\n\nNumber(sym) // TypeError\nsym + 2 // TypeError\n```\n\n## Symbol.prototype.description\n前面说过，Symbol()函数创建 Symbol 值时，可以用参数添加一个描述。\n```js\nconst sym = Symbol('foo');\n```\n上面代码中，sym这个值的描述就是字符串foo。\n\n但是，读取这个描述需要将 Symbol 显式转为字符串，即下面的写法。\n```js\nconst sym = Symbol('foo');\n\nString(sym) // \"Symbol(foo)\"\nsym.toString() // \"Symbol(foo)\"\n```\n上面的用法不是很方便。ES2019 提供了一个 Symbol 值的实例属性description，直接返回 Symbol 值的描述。\n```js\nconst sym = Symbol('foo');\n\nsym.description // \"foo\"\n```",
       "title": "Symbol数据类型",
@@ -172,7 +179,10 @@ export const localdb =  {
       "10/24",
       "10/25",
       "10/26",
-      "10/27"
+      "10/27",
+      "10/28",
+      "10/29",
+      "10/30"
     ],
     "fat": [
       "176.7",
@@ -185,7 +195,10 @@ export const localdb =  {
       "175.9",
       "176.2",
       "177.4",
-      "175.3"
+      "175.3",
+      "176.3",
+      "175.3",
+      "175.5"
     ]
   }
 }
