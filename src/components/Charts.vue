@@ -13,7 +13,6 @@ var chart = null
 
 watch(() => props.data,
     (n, o) => {
-        console.log(n)
         initChart(n)
     },
     { deep: true }

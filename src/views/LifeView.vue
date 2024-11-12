@@ -9,6 +9,11 @@
                 </Card>
 
                 <Card :style="{'margin':'0 0 30px 0'}">
+                    <h2 style="text-align: center;">BMI 中国标准 ( 当日体重 )</h2>
+                    <BMI :weight="(store.DB.fat.fat)[(store.DB.fat.fat).length - 1]" />
+                </Card>
+
+                <Card :style="{'margin':'0 0 30px 0'}">
                     <h2 style="text-align: center;">碳蛋脂转换器</h2>
                     <Exchange />
                 </Card>
@@ -37,9 +42,9 @@ import { onMounted, reactive, ref } from 'vue';
 import Charts from '../components/Charts.vue';
 import storage from '../utils/storage';
 import Exchange from '../components/Exchange.vue';
+import BMI from '../components/BMI.vue';
 let data = reactive([])
 useLazy(data)
-
 
 const getData = function() {
     return new Promise((resolve)=>{
