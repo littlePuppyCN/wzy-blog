@@ -6,7 +6,7 @@
                 <div>分类</div>
                 <div>BMI范围 | {{ bmi.toFixed(1) }}</div>
             </li>
-            <li :style="{ background: getColor === idx ? '#fa605f' : '' }" v-for="(val, idx) in data" :key="idx">
+            <li :class="{high:getColor === idx}" v-for="(val, idx) in data" :key="idx">
                 <div>
                     {{ val.name }}
                 </div>
@@ -76,5 +76,10 @@ li div:nth-child(2){
 
 main{
     margin-top: 30px;
+}
+
+.high{
+    background-color: #fa605f;
+    color: white;
 }
 </style>
