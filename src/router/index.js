@@ -25,9 +25,9 @@ const router = createRouter({
 
     },
     {
-      path: '/msg',
-      name: 'msg',
-      component: () => import('../views/MsgView.vue')
+      path: '/fitness',
+      name: 'fitness',
+      component: () => import('../views/FitnessView.vue')
 
     },
     {

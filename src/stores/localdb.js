@@ -221,5 +221,6 @@ export const localdb = {
       "172.1",
       "171.7"
     ]
-  }
+  },
+  "fitness": []
 }

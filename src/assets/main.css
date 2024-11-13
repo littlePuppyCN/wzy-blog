@@ -27,6 +27,18 @@ body,
   margin:0 auto;
 }
 
+.flex{
+  display: flex;
+}
+
+.flex_column{
+  flex-direction: column;
+}
+
+.flex_1{
+  flex: 1;
+}
+
 .scale{
   transition: 0.2s linear;
 }

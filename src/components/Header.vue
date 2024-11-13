@@ -21,7 +21,7 @@ onMounted(() => {
             <div class="navs" :class="{ navsOn: store.headerVisible }">
                 <div :class="{ hide: store.headerVisible }" :tab="1"><router-link to="/article">文章</router-link></div>
                 <div :class="{ hide: store.headerVisible }" :tab="2"><router-link to="/life">生活</router-link></div>
-                <!-- <div :class="{ hide: store.headerVisible }" :tab="3"><router-link to="/msg">留言板</router-link></div> -->
+                <div :class="{ hide: store.headerVisible }" :tab="3"><router-link to="/fitness">力训</router-link></div>
                 <!-- <div :class="{ hide: store.headerVisible }" :tab="4"><router-link to="/friends">友链</router-link></div> -->
                 <div :class="{ hide: store.headerVisible }" :tab="5"><router-link to="/about">建站</router-link></div>
             </div>

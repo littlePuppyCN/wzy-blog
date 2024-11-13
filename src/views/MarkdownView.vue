@@ -9,7 +9,7 @@
                     <div>{{ t.title }}</div>
                 </div>
             </div>
-            <div v-if="postType !== 'echarts'">
+            <div v-if="whiteTypeList.every((w) => postType != w)">
                 <h1 class="title">
                     <label for="article_title">{{ getTitle }}</label><input class="global_input" type="text"
                         v-model="postData.title">
@@ -21,17 +21,20 @@
                 <v-md-editor :disabled-menus="[]" @upload-image="handleUploadImage" v-model="postData.content"
                     height="500px" @save="save"></v-md-editor>
             </div>
-            <div v-else>
-
+            <div v-if="postType === whiteTypeList[0]">
                 <input v-model="fat" style="height: 50px;" type="text">
                 <button @click="echartConfirm" style="height: 50px;">确定</button>
                 <Charts :data="chartData" />
+            </div>
+
+            <div v-if="postType === whiteTypeList[1]">
+                <FitSelector />
             </div>
         </template>
     </Layout>
     <!-- <div class="fixed_bar scale box_shadow" v-if="store.DB[postType].length"> -->
     <div class="fixed_bar scale box_shadow">
-        <Card v-if="postType !== 'echarts'">
+        <Card v-if="whiteTypeList.every((w) => postType != w)">
             <div class="bar_box" v-for="c in store.DB[postType]" :key="c.id">
                 <div class="bar_title" :title="c.title">{{ c.title }}</div>
                 <div class="options">
@@ -51,12 +54,15 @@ import Card from '../components/Card.vue'
 import Charts from '../components/Charts.vue'
 import { getUrlBase64 } from '@/utils/base64.js'
 import storage from '../utils/storage'
+import FitSelector from '../components/FitSelector.vue'
 
 const postType = ref('list')
 const selectValue = ref('none')
 const fat = ref(0)
 
 const chartData = ref(store.DB.fat || {})
+const whiteTypeList = ['echarts', 'fitness']
+
 
 const echartConfirm = () => {
     let i = store.DB.fat
@@ -82,7 +88,9 @@ const types = ref([
     { name: 'friend', title: '友链' },
     { name: 'next', title: '待办' },
     { name: 'construct', title: '建站' },
-    { name: 'echarts', title: '图表' }]
+    { name: 'echarts', title: '图表' },
+    { name: 'fitness', title: '力训' }
+]
 )
 
 const handleUploadImage = (event, insertImage, files) => {
