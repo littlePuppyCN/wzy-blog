@@ -12,7 +12,7 @@
               {{ c.update }}
             </h1>
 
-            <Card :config="{ scale: false }" style="margin-left:16px;background: rgba(50, 115, 220,.8);color: white;">
+            <Card :config="{ scale: false }" style="margin-left:16px;background: #c8dbd9;">
               <pre v-html="c.content"></pre>
             </Card>
           </div>
@@ -31,7 +31,7 @@ import { store } from '@/stores/db'
 
 <style scoped>
 .progress {
-  border-left: 6px solid rgba(50, 115, 220,.8);
+  border-left: 6px solid #5989d7;
   margin-left: 20px;
 }
 
@@ -44,7 +44,7 @@ h1 {
   -ms-flex-pack: center;
   -ms-flex-align: center;
   align-items: center;
-  background-color: rgba(50, 115, 220,.8);
+  background-color: #5989d7;
   border-radius: 50%;
   display: -ms-flexbox;
   display: flex;

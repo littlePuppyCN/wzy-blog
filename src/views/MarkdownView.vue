@@ -84,8 +84,8 @@ const options = [{ text: 'javascript' }, { text: 'vue' }, { text: 'react' }, { t
 const types = ref([
     { name: 'list', title: '文章' },
     { name: 'life', title: '生活' },
-    { name: 'msg', title: '留言板' },
-    { name: 'friend', title: '友链' },
+    // { name: 'msg', title: '留言板' },
+    // { name: 'friend', title: '友链' },
     { name: 'next', title: '待办' },
     { name: 'construct', title: '建站' },
     { name: 'echarts', title: '图表' },

@@ -13,10 +13,10 @@
                     <BMI :weight="(store.DB.fat.fat)[(store.DB.fat.fat).length - 1]" />
                 </Card>
 
-                <Card :style="{ 'margin': '0 0 30px 0' }">
+                <!-- <Card :style="{ 'margin': '0 0 30px 0' }">
                     <h2 style="text-align: center;">碳蛋脂转换器</h2>
                     <Exchange />
-                </Card>
+                </Card> -->
 
                 <Card :style="{ 'margin': '0 0 30px 0' }">
                     <h2 style="text-align: center;">力训记录</h2>
