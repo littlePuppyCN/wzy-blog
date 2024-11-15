@@ -19,7 +19,7 @@ const click = () => {
 .enter{
     position: fixed;
     bottom: 30px;
-    right: 20px;
+    left: 20px;
     width: 50px;
     height: 50px;
     border-radius: 50%;

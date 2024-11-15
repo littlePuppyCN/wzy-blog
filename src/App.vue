@@ -3,7 +3,7 @@ import { onMounted, onBeforeMount } from 'vue'
 import { RouterView } from 'vue-router'
 import { store } from '@/stores/db'
 import storage from '@/utils/storage.js'
-
+import Audio from './components/Audio.vue'
 onBeforeMount(() => {
   if (location.hostname === 'localhost') return
   storage.removeItem('DB')
@@ -17,6 +17,7 @@ onMounted(() => {
 </script>
 
 <template>
+  <Audio />
   <RouterView />
 </template>
 
