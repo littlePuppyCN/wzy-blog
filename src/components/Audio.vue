@@ -4,7 +4,7 @@
             <div :class="{animation:startRotate}">
 
             </div>
-            <audio ref="audioRef" src="/src/assets/1.mp3" ></audio>
+            <audio ref="audioRef" :src="src" ></audio>
         </div>
     </div>
 
@@ -12,6 +12,7 @@
 
 <script setup>
 import {  ref } from 'vue';
+import src from '@/assets/1.mp3'
 const audioRef= ref(null)
 const startRotate = ref(false)
 
