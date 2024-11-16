@@ -61,8 +61,7 @@ const click = (evt) => {
 
 .keyboard {
     position: absolute;
-    bottom: -252px;
-    right: -260px;
+    top: 70px;
     z-index: 12;
     width: 210px;
     flex-wrap: wrap;
