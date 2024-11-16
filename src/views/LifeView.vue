@@ -23,10 +23,7 @@ import Card from '../components/Card.vue';
 import { store } from '@/stores/db';
 import { useLazy } from '../utils/lazy';
 import { onMounted, reactive, ref } from 'vue';
-import Charts from '../components/Charts.vue';
-import storage from '../utils/storage';
-import Exchange from '../components/Exchange.vue';
-import BMI from '../components/BMI.vue';
+
 let data = reactive([])
 useLazy(data)
 
@@ -34,7 +31,7 @@ const getData = function() {
     return new Promise((resolve)=>{
         setTimeout(() => {
             resolve(store.DB.life)
-        },1000)
+        },300)
     })
 }
 

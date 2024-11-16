@@ -4,7 +4,7 @@
             <div :class="{animation:startRotate}">
 
             </div>
-            <audio ref="audioRef" :src="src" ></audio>
+            <audio ref="audioRef" :src="src"  @ended="end"></audio>
         </div>
     </div>
 
@@ -23,6 +23,11 @@ const click = () => {
         audioRef.value.play()
     }
     startRotate.value = !startRotate.value
+}
+
+const end = () => {
+    startRotate.value = false
+    audioRef.value.pause()
 }
 </script>
 
@@ -44,7 +49,7 @@ const click = () => {
 }
 
 .animation{
-    animation: movement linear 5s infinite;
+    animation: movement linear 12s infinite;
 }
 
 @keyframes movement {

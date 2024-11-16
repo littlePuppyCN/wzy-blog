@@ -22,8 +22,7 @@
                     height="500px" @save="save"></v-md-editor>
             </div>
             <div v-if="postType === whiteTypeList[0]">
-                <input v-model="fat" style="height: 50px;" type="text">
-                <button @click="echartConfirm" style="height: 50px;">确定</button>
+                <FakeKeyBoard @submit="echartConfirm" />
                 <Charts :data="chartData" />
             </div>
 
@@ -55,26 +54,23 @@ import Charts from '../components/Charts.vue'
 import { getUrlBase64 } from '@/utils/base64.js'
 import storage from '../utils/storage'
 import FitSelector from '../components/FitSelector.vue'
+import FakeKeyBoard from '../components/FakeKeyBoard.vue';
 
 const postType = ref('list')
 const selectValue = ref('none')
-const fat = ref(0)
+
 
 const chartData = ref(store.DB.fat || {})
 const whiteTypeList = ['echarts', 'fitness']
 
-
-const echartConfirm = () => {
+const echartConfirm = (val) => {
     let i = store.DB.fat
     if (i) {
         const d = new Date()
         const month = d.getMonth() + 1
         const day = d.getDate()
-
-        store.recordFat(fat.value, month + '/' + day)
-
+        store.recordFat(Number(val), month + '/' + day)
         chartData.value = i
-
     }
 }
 

@@ -3,6 +3,7 @@
         <template #content>
             <div class="w1000">
 
+
                 <Card :style="{ 'margin': '0 0 30px 0' }">
                     <h2 style="text-align: center;">体重记录</h2>
                     <Charts :data="store.DB.fat || {}" />
@@ -36,6 +37,10 @@ import Exchange from '../components/Exchange.vue';
 import BMI from '../components/BMI.vue';
 import { store } from '@/stores/db';
 import FitLog from '../components/FitLog.vue';
+
+const submit = (val) => {
+    console.log(val)
+}
 
 </script>
 
