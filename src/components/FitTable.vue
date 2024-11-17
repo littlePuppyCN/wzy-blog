@@ -3,7 +3,10 @@
         <div class="wrapper" v-for="(d, idx) in getData" :key="idx">
             <div>{{ d.day }}</div>
             <div>{{ d.weight }}斤</div>
-            <div style="font-size: 18px;">{{ d.difference }} 
+            <div style="font-size: 18px;">
+                <span v-if="d.difference > 0">﹢</span>
+                <span v-if="d.difference < 0">﹣</span>
+                {{ Math.abs(d.difference) }} 
                 <span v-if="d.difference > 0" style="color: red;">↑</span>
                 <span v-if="d.difference < 0" style="color: green;">↓</span>
             </div>
