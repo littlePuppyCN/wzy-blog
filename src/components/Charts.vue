@@ -2,14 +2,17 @@
     <div ref="canvas" style="width: 100% ; height: 400px;">
 
     </div>
+
 </template>
 
 <script setup>
 import { nextTick, onMounted, ref, watch } from 'vue'
+import { store } from '../stores/db';
 import * as echarts from 'echarts';
 const props = defineProps(['data'])
 const canvas = ref(null)
 var chart = null
+
 
 watch(() => props.data,
     (n, o) => {
@@ -18,12 +21,22 @@ watch(() => props.data,
     { deep: true }
 )
 
+watch(() => store.tipIndex,
+    (n, o) => {
+        chart.dispatchAction({
+            type: 'showTip',
+            seriesIndex: 0,
+            dataIndex: n
+        })
+    }
+)
+
 const initChart = (d) => {
     const option = {
         tooltip: {
-            show:true,
-            trigger:'axis',
-            formatter:function(p){
+            show: true,
+            trigger: 'axis',
+            formatter: function (p) {
                 return p[0].value + ' 斤 '
             },
         },
@@ -33,7 +46,7 @@ const initChart = (d) => {
         yAxis: {
             type: 'value',
             min: function (value) {
-                return value.min - 35;
+                return value.min - 20;
             }
         },
         series: [
@@ -47,7 +60,6 @@ const initChart = (d) => {
 
     chart.setOption(option)
 }
-
 
 onMounted(async () => {
     chart = echarts.init(canvas.value)

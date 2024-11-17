@@ -1,6 +1,6 @@
 <template>
     <div class="box">
-        <div class="wrapper" v-for="(d, idx) in getData" :key="idx">
+        <div class="wrapper" v-for="(d, idx) in getData" :key="idx" @mouseenter="mouseenter(d.index)" >
             <div>{{ d.day }}</div>
             <div>{{ d.weight }}斤</div>
             <div style="font-size: 18px;">
@@ -17,17 +17,17 @@
 </template>
 
 <script setup>
-
 import { computed } from 'vue';
-const props = defineProps(['data'])
 import { store } from '../stores/db';
+const props = defineProps(['data'])
 const visible = location.hostname === 'localhost'
 const getData = computed(() => {
     return props.data.date.map((d, idx) => {
         return {
             day: d,
             weight: (props.data.fat)[idx],
-            difference:((props.data.fat)[idx] - (props.data.fat)[idx - 1]).toFixed(1)
+            difference:((props.data.fat)[idx] - (props.data.fat)[idx - 1]).toFixed(1),
+            index:idx
         }
     }).reverse()
 })
@@ -38,6 +38,11 @@ const click = (day) => {
         store.deleteFitLog(day)
     }
 }
+
+const mouseenter = (idx) => {
+    store.setTipIndex(idx)
+}
+
 </script>
 
 <style scoped>

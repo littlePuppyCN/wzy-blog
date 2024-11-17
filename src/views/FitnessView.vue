@@ -42,6 +42,7 @@ import BMI from '../components/BMI.vue';
 import { store } from '@/stores/db';
 import FitLog from '../components/FitLog.vue';
 import FitTable from '../components/FitTable.vue';
+
 </script>
 
 <style scoped></style>

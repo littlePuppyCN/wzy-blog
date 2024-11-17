@@ -17,6 +17,8 @@ const storageDB = storage.getItem('DB')
 
 export const store = reactive({
     DB: localdb,
+    // 表格联动echarts tooltip的序号
+    tipIndex:null,
     initDB() {
         if (!storageDB) {
             storage.setItem('DB', localdb)
@@ -24,6 +26,9 @@ export const store = reactive({
         } else {
             this.DB = storageDB
         }
+    },
+    setTipIndex(index){
+        this.tipIndex = index
     },
     setDB() {
         storage.setItem('DB', this.DB)
