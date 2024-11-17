@@ -17,7 +17,6 @@ class KeyListener {
         this.init()
     }
     keydown(e) {
-        console.log(e.keyCode)
         this.pressedKeys[e.keyCode] = true
     }
     keyup(e) {
@@ -26,6 +25,10 @@ class KeyListener {
     init() {
         document.addEventListener('keydown', this.keydown.bind(this))
         document.addEventListener('keyup', this.keyup.bind(this))
+    }
+    exit(){
+        document.removeEventListener('keydown')
+        document.removeEventListener('keyup')
     }
 }
 
@@ -303,15 +306,13 @@ class Game {
     }
 }
 
-
-
-
 onMounted(() => {
     const g = new Game()
     setTimeout(() => {
         g.init()
     })
 })
+
 </script>
   
 <style scoped></style>

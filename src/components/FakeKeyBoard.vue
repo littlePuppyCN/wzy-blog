@@ -77,6 +77,11 @@ const click = (evt) => {
     border-bottom: 1px solid black;
     line-height: 70px;
     text-align: center;
+    cursor: pointer;
+}
+
+.key:hover{
+    background-color: white;
 }
 
 .key:last-child {

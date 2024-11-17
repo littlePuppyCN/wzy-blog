@@ -10,6 +10,10 @@
                 </Card>
 
                 <Card :style="{ 'margin': '0 0 30px 0' }">
+                    <FitTable :data="store.DB.fat || {}" />
+                </Card>
+
+                <Card :style="{ 'margin': '0 0 30px 0' }">
                     <h2 style="text-align: center;">BMI 中国标准 ( 当日体重 )</h2>
                     <BMI :weight="(store.DB.fat.fat)[(store.DB.fat.fat).length - 1]" />
                 </Card>
@@ -37,11 +41,7 @@ import Exchange from '../components/Exchange.vue';
 import BMI from '../components/BMI.vue';
 import { store } from '@/stores/db';
 import FitLog from '../components/FitLog.vue';
-
-const submit = (val) => {
-    console.log(val)
-}
-
+import FitTable from '../components/FitTable.vue';
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped></style>

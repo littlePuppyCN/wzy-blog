@@ -49,6 +49,13 @@ export const store = reactive({
         this.DB.fitness.unshift(log)
         storage.setItem('DB', this.DB)
     },
+    deleteFitLog(day){
+        // 只支持删除一天唯一数据 一天重复添加在删除 会导致bug 因为每天记录是通过日期区分 没有id
+        const idx = this.DB.fat.date.findIndex((each) => day === each)
+        this.DB.fat.date =  this.DB.fat.date.filter((e,index) => index !== idx )
+        this.DB.fat.fat = this.DB.fat.fat.filter((e,index) => index !== idx )
+        storage.setItem('DB', this.DB)
+    },
     editArticle(val, type) {
         this.DB[type].forEach((l) => {
             if (val.id === l.id) {
