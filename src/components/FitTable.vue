@@ -3,6 +3,10 @@
         <div class="wrapper" v-for="(d, idx) in getData" :key="idx">
             <div>{{ d.day }}</div>
             <div>{{ d.weight }}斤</div>
+            <div style="font-size: 18px;">{{ d.difference }} 
+                <span v-if="d.difference > 0" style="color: red;">↑</span>
+                <span v-if="d.difference < 0" style="color: green;">↓</span>
+            </div>
             <div @click="click(d.day)" v-if="visible">删除</div>
         </div>
 
@@ -19,7 +23,8 @@ const getData = computed(() => {
     return props.data.date.map((d, idx) => {
         return {
             day: d,
-            weight: (props.data.fat)[idx]
+            weight: (props.data.fat)[idx],
+            difference:((props.data.fat)[idx] - (props.data.fat)[idx - 1]).toFixed(1)
         }
     }).reverse()
 })
