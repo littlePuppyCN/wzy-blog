@@ -28,10 +28,26 @@ watch(() => store.tipIndex,
             seriesIndex: 0,
             dataIndex: n
         })
+        if (n === undefined) {
+            chart.dispatchAction({
+                type: 'hideTip',
+            })
+        }
     }
 )
 
 const initChart = (d) => {
+
+    const weekArr = []
+
+    Array((d.date).length).fill(null).forEach((e, idx) => {
+        if ((idx+1) % 7 == 0) {
+            weekArr.push({
+                xAxis: idx
+            })
+        }
+    })
+
     const option = {
         tooltip: {
             show: true,
@@ -41,6 +57,8 @@ const initChart = (d) => {
             },
         },
         xAxis: {
+            type: 'category',
+            boundaryGap: false,
             data: d.date,
         },
         yAxis: {
@@ -53,11 +71,19 @@ const initChart = (d) => {
             {
                 data: d.fat,
                 type: 'line',
-                smooth: true
+                lineStyle: {
+                    color: '#5470C6',
+                    width: 5
+                },
+                markLine: {
+                    symbol: ['none', 'none'],
+                    label: { show: false },
+                    data: weekArr
+                },
             }
-        ]
-    };
+        ],
 
+    };
     chart.setOption(option)
 }
 

@@ -1,16 +1,12 @@
 <template>
     <div>
-        <select name="fit" id="fit" @change="onChange" v-model="body">
-            <option :value="0">请选择部位</option>
-            <option v-for="(each, idx) in options" :key="idx" :value="each.value">{{ each.name }}
-            </option>
-        </select>
+        <Select @onChange="onChange" :data="{ name: 'maso', options: options, value: body }" />
     </div>
 
     <div>
         <div v-for="(each, idx) in yaLin">
             {{ each.name }}
-            <select :key="idx" :name="each.name" :id="each.name" v-model="each.value" @change="yaLinChange">
+            <select :key="idx" :name="each.name" :id="each.name" v-model="each.value">
                 <option :value="0">0</option>
                 <option :value="e" v-for="(e, idx) in [1, 2, 3, 4, 5, 6]" :key="idx">{{ e }}</option>
             </select>
@@ -29,6 +25,7 @@
 <script setup>
 import { store } from '@/stores/db';
 import { ref } from 'vue';
+import Select from './Select.vue';
 const body = ref(0)
 const log = ref('')
 
@@ -77,8 +74,8 @@ const initYaLin = [
 
 const yaLin = ref(JSON.parse(JSON.stringify(initYaLin)))
 
-const onChange = (evt) => {
-    // console.log(body.value)
+const onChange = (v) => {
+    body.value = v
 }
 
 const yaLinChange = (evt) => {
@@ -88,19 +85,18 @@ const yaLinChange = (evt) => {
 const onClick = () => {
     const d = new Date()
     const result = {
-        b:(options.value.filter((op) => op.value === body.value))[0].name,
-        y:yaLin.value,
-        log:log.value,
-        time:d.toLocaleString()
+        b: (options.value.filter((op) => op.value === body.value))[0].name,
+        y: yaLin.value,
+        log: log.value,
+        time: d.toLocaleString()
     }
-
     store.addFitLog(result)
     reset()
 }
 
 const reset = () => {
-    body.value = 0 
-    yaLin.value = initYaLin
+    body.value = 0
+    yaLin.value = JSON.parse(JSON.stringify(initYaLin))
     log.value = ''
 }
 
@@ -113,11 +109,11 @@ select {
     line-height: 40px;
 }
 
-input{
+input {
     height: 50px;
 }
 
-button{
+button {
     height: 50px;
     width: 100px;
 }

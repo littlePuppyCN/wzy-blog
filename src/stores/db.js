@@ -30,6 +30,12 @@ export const store = reactive({
     setTipIndex(index){
         this.tipIndex = index
     },
+    fitnessFilter(key){
+        if(!key) {
+            return this.DB.fitness
+        }
+        return this.DB.fitness.filter((e) => e.b == key)
+    },
     setDB() {
         storage.setItem('DB', this.DB)
     },
@@ -54,9 +60,9 @@ export const store = reactive({
         this.DB.fitness.unshift(log)
         storage.setItem('DB', this.DB)
     },
-    deleteFitLog(day){
+    deleteFitTable(day){
         // 只支持删除一天唯一数据 一天重复添加在删除 会导致bug 因为每天记录是通过日期区分 没有id
-        const idx = this.DB.fat.date.findIndex((each) => day === each)
+        const idx = this.DB.fat.date.findIndex((each) => day == each)
         this.DB.fat.date =  this.DB.fat.date.filter((e,index) => index !== idx )
         this.DB.fat.fat = this.DB.fat.fat.filter((e,index) => index !== idx )
         storage.setItem('DB', this.DB)

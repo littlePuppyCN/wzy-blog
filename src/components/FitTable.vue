@@ -1,12 +1,13 @@
 <template>
     <div class="box">
-        <div class="wrapper" v-for="(d, idx) in getData" :key="idx" @mouseenter="mouseenter(d.index)" >
-            <div>{{ d.day }}</div>
+        <div :class="['wrapper', { border7: (idx+1) % 7 == 0 }]" v-for="(d, idx) in getData" :key="idx"
+            @mouseenter="mouseenter(d.index)">
+            <div>{{ d.day }}</div> 
             <div>{{ d.weight }}斤</div>
             <div style="font-size: 18px;">
                 <span v-if="d.difference > 0">﹢</span>
                 <span v-if="d.difference < 0">﹣</span>
-                {{ Math.abs(d.difference) }} 
+                {{ Math.abs(d.difference) }}
                 <span v-if="d.difference > 0" style="color: red;">↑</span>
                 <span v-if="d.difference < 0" style="color: green;">↓</span>
             </div>
@@ -19,6 +20,8 @@
 <script setup>
 import { computed } from 'vue';
 import { store } from '../stores/db';
+const emits = defineEmits(['indexChange'])
+
 const props = defineProps(['data'])
 const visible = location.hostname === 'localhost'
 const getData = computed(() => {
@@ -26,16 +29,16 @@ const getData = computed(() => {
         return {
             day: d,
             weight: (props.data.fat)[idx],
-            difference:((props.data.fat)[idx] - (props.data.fat)[idx - 1]).toFixed(1),
-            index:idx
+            difference: ((props.data.fat)[idx] - (props.data.fat)[idx - 1]).toFixed(1),
+            index: idx
         }
     }).reverse()
 })
 
 const click = (day) => {
     const ok = confirm('确认删除吗？')
-    if(ok){
-        store.deleteFitLog(day)
+    if (ok) {
+        store.deleteFitTable(day)
     }
 }
 
@@ -55,23 +58,27 @@ const mouseenter = (idx) => {
     align-items: center;
 }
 
-.wrapper:hover{
+.wrapper:hover {
     background-color: #fa605f;
     color: white;
     font-size: 20px;
 }
 
-.wrapper:nth-child(1){
+.wrapper:nth-child(1) {
     background-color: #c8dbd9;
     color: white;
     font-size: 20px;
+}
+
+.border7{
+    border-bottom: 1px solid white;
 }
 
 .wrapper div {
     width: 100px;
 }
 
-.box{
+.box {
     max-height: 400px;
     overflow: auto;
     border-radius: 6px;
