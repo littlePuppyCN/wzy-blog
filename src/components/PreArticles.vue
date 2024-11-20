@@ -1,6 +1,6 @@
 <template>
-    <Card :style="{ 'margin-bottom': '20px', 'cursor': 'pointer' ,'display':!article ? 'none' : 'flex'}" @click="showArcticle(article)"
-        :config="{ scale: true }" v-for="article in getLists" :key="article.id">
+    <Card @click="showArcticle(article)" :config="{ scale: true }" v-for="article in getLists" :key="article.id"
+        :style="{ 'margin-bottom': '20px', 'cursor': 'pointer', 'display': !article.visible ? 'flex' : 'none' }">
         <div v-if="isLocal ? true : !article.visible">
             <h1>{{ article.title }}</h1>
             <div style="height:90px; overflow: hidden;">
