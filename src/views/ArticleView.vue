@@ -1,4 +1,3 @@
-
 <template>
     <Layout :style="{ 'height': '500px' }" :bg="'article'">
         <template #content>
@@ -9,12 +8,14 @@
                             placeholder="搜索文章..">
                         <button @click="search">查找文章</button>
                     </div>
-                    <div v-for="c in getLists" :key="c.id" class="box_shadow scale contents" @click="() => showArcticle(c)">
-                        <div class="tag" v-if="c.tags">
-                            {{  c.tags }}
-                        </div>
-                        <div>
-                            {{ c.title }}
+                    <div v-for="c in getLists" :key="c.id" @click="() => showArcticle(c)">
+                        <div class="box_shadow scale contents" v-if="!c.visible">
+                            <div class="tag" v-if="c.tags">
+                                {{ c.tags }}
+                            </div>
+                            <div>
+                                {{ c.title }}
+                            </div>
                         </div>
                     </div>
                     <div class="empty" v-if="data.length === 0">
@@ -26,7 +27,7 @@
         </template>
     </Layout>
 </template>
-  
+
 <script setup>
 import Layout from './Layout.vue'
 import { useRouter } from 'vue-router'
@@ -72,27 +73,31 @@ const search = () => {
 }
 
 </script>
-  
+
 <style scoped>
 @media (max-width: 1024px) {
-   .w1000{
-    width: 100%!important;
-   }
-   .tag{
-    display: none;
-   }
-   .list::before{
-    background-position: 50%!important;
-   }
+    .w1000 {
+        width: 100% !important;
+    }
+
+    .tag {
+        display: none;
+    }
+
+    .list::before {
+        background-position: 50% !important;
+    }
 }
-.tag{
+
+.tag {
     position: absolute;
-    left:20px;
+    left: 20px;
     font-size: 15px;
     border-radius: 8px;
     padding: 2px 8px;
     background-color: rgb(225 225 225);
 }
+
 .empty {
     height: 350px;
     display: flex;

@@ -1,15 +1,17 @@
 <template>
-    <Card :style="{ 'margin-bottom': '20px', 'cursor': 'pointer' }" @click="showArcticle(article)" :config="{ scale: true }"
-        v-for="article in getLists" :key="article.id">
-        <h1>{{ article.title }}</h1>
-        <div style="height:90px; overflow: hidden;">
-            <p>{{ article.content }}</p>
+    <Card :style="{ 'margin-bottom': '20px', 'cursor': 'pointer' }" @click="showArcticle(article)"
+        :config="{ scale: true }" v-for="article in getLists" :key="article.id">
+        <div v-if="isLocal ? true : !article.visible">
+            <h1>{{ article.title }}</h1>
+            <div style="height:90px; overflow: hidden;">
+                <p>{{ article.content }}</p>
 
-        </div>
-        <div class="bot">
-            <div class="tags">{{ article.update }}</div>
-            <div class="tags">
-                {{ article.tags }}
+            </div>
+            <div class="bot">
+                <div class="tags">{{ article.update }}</div>
+                <div class="tags">
+                    {{ article.tags }}
+                </div>
             </div>
         </div>
     </Card>
@@ -17,15 +19,14 @@
 </template>
 
 <script setup>
-import { computed ,ref} from 'vue'
+import { computed, ref } from 'vue'
 import Card from '../components/Card.vue'
 import { store } from '@/stores/db'
 import { useRouter } from 'vue-router'
 import Page from '../components/Page.vue'
 const curPage = ref(1)
-
 const router = useRouter()
-
+const isLocal = ref(location.hostname === 'localhost')
 const { DB } = store
 
 const onChange = (p) => {
@@ -44,7 +45,7 @@ const getLists = computed(() => {
 
 </script>
 
-<style  scoped>
+<style scoped>
 h1 {
     text-align: center;
     font-size: 1.5em;

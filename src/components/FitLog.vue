@@ -1,21 +1,24 @@
 <template>
-    <div v-for="(l, idx) in list" :key="idx" style="margin-top: 20px;">
-        <div @dblclick="dblclick(l.time)">
-            <p :title="`查找全部${l.b}`" @click="filter(l.b)">
-                {{ l.b }}
-            </p>
-            <p>
-                <span v-for="(y, idx) in l.y" :key="idx" style="margin-right:20px;">
-                    {{ y.name }} X {{ y.value }}
-                </span>
-                <span>
-                    总重量: {{ getWeight(l.y) }} KG
-                </span>
-            </p>
-            <p>{{ l.log }}</p>
-            <p @click="filter('')">{{ l.time }}</p>
+    <div class="logBox" style="margin-top: 20px;">
+        <div v-for="(l, idx) in list" :key="idx" class="eachBox">
+            <div @dblclick="dblclick(l.time)">
+                <p :title="`查找全部${l.b}`" @click="filter(l.b)">
+                    {{ l.b }}
+                </p>
+                <p>
+                    <span v-for="(y, idx) in l.y" :key="idx" style="margin-right:20px;">
+                        {{ y.name }} X {{ y.value }}
+                    </span>
+                    <span>
+                        总重量: {{ getWeight(l.y) }} KG
+                    </span>
+                </p>
+                <p>{{ l.log }}</p>
+                <p @click="filter('')">{{ l.time }}</p>
+            </div>
         </div>
     </div>
+
 </template>
 
 <script setup>
@@ -45,11 +48,22 @@ const dblclick = (t) => {
 </script>
 
 <style scoped>
-div {
-
-    font-size: 16px;
+.logBox {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    font-size: 16px;
+}
+
+.eachBox {
+    width: 50%;
+}
+
+.eachBox:nth-child(even) {
+    padding-left: 10px;
+}
+
+.eachBox:nth-child(odd) {
+    padding-right: 10px;
 }
 
 p {
@@ -57,6 +71,7 @@ p {
     text-indent: 8px;
     height: 40px;
     line-height: 40px;
+    overflow: hidden;
 }
 
 div>p:nth-child(1) {

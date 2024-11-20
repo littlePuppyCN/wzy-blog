@@ -1,6 +1,14 @@
 export const localdb = {
   "list": [
     {
+      "id": 1732093761823,
+      "content": "自己可见测试",
+      "title": "自己可见测试",
+      "update": "2024/11/20 17:09:21",
+      "tags": "vue",
+      "visible": true
+    },
+    {
       "id": 1731765520810,
       "content": "```js\n// 原始数组\nlet arr = [1, 2, 3, 4, 5];\n \n// 使用解构赋值和数组连接\nlet [first, ...rest] = arr;\nlet newArr = [...rest, first];\n \nconsole.log(newArr); // 输出: [2, 3, 4, 5, 1]\n \n// 或者使用 slice 方法\nlet firstElement = arr[0];\nlet remainingElements = arr.slice(1);\nlet anotherNewArr = [...remainingElements, firstElement];\n \nconsole.log(anotherNewArr); // 输出: [2, 3, 4, 5, 1]\n```",
       "title": "把数组的第一位放到最后一位",
@@ -287,7 +295,9 @@ export const localdb = {
       "11/15",
       "11/16",
       "11/17",
-      "11/18"
+      "11/18",
+      "11/19",
+      "11/20"
     ],
     "fat": [
       "176.7",
@@ -322,10 +332,56 @@ export const localdb = {
       "171.6",
       "171.9",
       172.4,
-      172.3
+      172.3,
+      171.6,
+      171.3
     ]
   },
   "fitness": [
+    {
+      "b": "腹肌",
+      "y": [
+        {
+          "name": "大哑铃",
+          "value": 0,
+          "factor": 3
+        },
+        {
+          "name": "中哑铃",
+          "value": 0,
+          "factor": 2.5
+        },
+        {
+          "name": "小哑铃",
+          "value": 0,
+          "factor": 1.5
+        }
+      ],
+      "log": "10X5",
+      "time": "2024/11/20 11:31:25"
+    },
+    {
+      "b": "大腿",
+      "y": [
+        {
+          "name": "大哑铃",
+          "value": 3,
+          "factor": 3
+        },
+        {
+          "name": "中哑铃",
+          "value": 1,
+          "factor": 2.5
+        },
+        {
+          "name": "小哑铃",
+          "value": 0,
+          "factor": 1.5
+        }
+      ],
+      "log": "7X10",
+      "time": "2024/11/20 11:31:18"
+    },
     {
       "b": "胸",
       "y": [

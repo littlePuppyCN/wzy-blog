@@ -1,5 +1,5 @@
 <template>
-    <Layout :style="{ 'height': '500px' }" :bg="'friends'">
+    <Layout :style="{ 'height': '500px' }" :bg="'article'">
         <template #content>
             <canvas width="1200" height="600" ref="canvas"></canvas>
         </template>

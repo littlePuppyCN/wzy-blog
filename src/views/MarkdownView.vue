@@ -1,5 +1,5 @@
 <template>
-    <Layout :style="{ 'height': '500px' }" :bg="'home'">
+    <Layout :style="{ 'height': '500px' }" :bg="'article'">
         <template #word>
         </template>
         <template #content>
@@ -17,6 +17,8 @@
                         <option value='none' disabled>请选择</option>
                         <option v-for="o in options" :value="o.text" :key="o.text">{{ o.text }}</option>
                     </select>
+                    <div>仅自己可见</div>
+                    <div @click="changeVisible" class="onlySelf" :style="{background:postData.visible ? 'green' : 'red'}"></div>
                 </h1>
                 <v-md-editor :disabled-menus="[]" @upload-image="handleUploadImage" v-model="postData.content"
                     height="500px" @save="save"></v-md-editor>
@@ -63,6 +65,12 @@ const selectValue = ref('none')
 const chartData = ref(store.DB.fat || {})
 const whiteTypeList = ['echarts', 'fitness']
 
+
+// 文章仅自己可见
+const changeVisible = () => {
+    postData.value.visible = !postData.value.visible
+}
+
 const echartConfirm = (val) => {
     let i = store.DB.fat
     if (i) {
@@ -104,7 +112,8 @@ const postData = ref(
         content: '',
         title: '',
         update: null,
-        tags: ''
+        tags: '',
+        visible: false
     }
 )
 
@@ -142,6 +151,7 @@ const reset = () => {
         title: '',
         update: null,
         tags: '',
+        visible: false
     }
     selectValue.value = 'none'
 }
@@ -174,6 +184,21 @@ const save = () => {
 </script>
 
 <style scoped>
+.onlySelf {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.red {
+    background-color: red;
+}
+
+.green {
+    background-color: green;
+}
+
 .highlight {
     color: #0c9;
 }
