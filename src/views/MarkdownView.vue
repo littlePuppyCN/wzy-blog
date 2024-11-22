@@ -17,7 +17,7 @@
                         <option value='none' disabled>请选择</option>
                         <option v-for="o in options" :value="o.text" :key="o.text">{{ o.text }}</option>
                     </select>
-                    <div>仅自己可见</div>
+                    <div style="margin-left: 20px;font-size: 16px;">仅自己可见</div>
                     <div @click="changeVisible" class="onlySelf" :style="{background:postData.visible ? 'green' : 'red'}"></div>
                 </h1>
                 <v-md-editor :disabled-menus="[]" @upload-image="handleUploadImage" v-model="postData.content"

@@ -1,6 +1,6 @@
 <template>
     <Card @click="showArcticle(article)" :config="{ scale: true }" v-for="article in getLists" :key="article.id"
-        :style="{ 'margin-bottom': '20px', 'cursor': 'pointer', 'display': !article.visible ? 'flex' : 'none' }">
+        :style="{ 'margin-bottom': '20px', 'cursor': 'pointer', 'display': isLocal ? 'flex' : !article.visible ? 'flex' : 'none' }">
         <div v-if="isLocal ? true : !article.visible">
             <h1>{{ article.title }}</h1>
             <div style="height:90px; overflow: hidden;">
@@ -11,6 +11,7 @@
                 <div class="tags">{{ article.update }}</div>
                 <div class="tags">
                     {{ article.tags }}
+                    <span v-if="article.visible" style="margin-left: 10px; color: #276cda;">( 仅自己可见 )</span>
                 </div>
             </div>
         </div>

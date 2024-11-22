@@ -6,9 +6,12 @@ import PreArticles from '../components/PreArticles.vue'
 import Layout from './Layout.vue'
 import Next from '../components/Next.vue'
 import Contact from '../components/Contact.vue'
+import PDF from '../components/PDF.vue'
+import pdfUrl from '../assets/js.pdf'
+
 const onScroll = () => {
   document.querySelector('.layout').scrollIntoView({ behavior: 'smooth' })
-  if(window.innerWidth < 1000) return
+  if (window.innerWidth < 1000) return
   store.visible()
 }
 
@@ -49,7 +52,9 @@ const onScroll = () => {
         </div>
         <div>
           <a href="https://chat.baidu.com/">
-            <img style="width: 30px;height: 30px;" src="https://gips0.baidu.com/it/u=2675190506,1465883752&fm=3028&app=3028&f=PNG&fmt=auto&q=75&size=f84_84" alt="">
+            <img style="width: 30px;height: 30px;"
+              src="https://gips0.baidu.com/it/u=2675190506,1465883752&fm=3028&app=3028&f=PNG&fmt=auto&q=75&size=f84_84"
+              alt="">
             <span>Baidu_Ai</span>
           </a>
         </div>
@@ -66,6 +71,7 @@ const onScroll = () => {
           <Introduce />
           <Next />
           <Contact />
+          <PDF :title="'查看总结PDF'" :pdfUrl="pdfUrl"  />
         </div>
       </div>
     </template>

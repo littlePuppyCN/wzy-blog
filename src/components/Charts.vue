@@ -41,7 +41,7 @@ const initChart = (d) => {
     const weekArr = []
 
     Array((d.date).length).fill(null).forEach((e, idx) => {
-        if ((idx+1) % 7 == 0) {
+        if (idx % 7 == 0) {
             weekArr.push({
                 xAxis: idx
             })
@@ -49,6 +49,7 @@ const initChart = (d) => {
     })
 
     const option = {
+        animationDuration: 2000,
         tooltip: {
             show: true,
             trigger: 'axis',
@@ -64,7 +65,7 @@ const initChart = (d) => {
         yAxis: {
             type: 'value',
             min: function (value) {
-                return value.min - 20;
+                return value.min - 17;
             }
         },
         series: [
@@ -75,9 +76,20 @@ const initChart = (d) => {
                     color: '#5470C6',
                     width: 5
                 },
+                markPoint: {
+                    data: [
+                        { type: 'min', name: '最小体重' },
+                        { type: 'max', name: '最大体重' }
+                    ]
+                },
+                label: {
+                    show: false,
+                    rotate:45,
+                    distance:-30
+                },
                 markLine: {
                     symbol: ['none', 'none'],
-                    label: { show: false },
+                    label: { show: true },
                     data: weekArr
                 },
             }
