@@ -4,7 +4,7 @@
             @mouseenter="mouseenter(d.index)">
             <div>{{ d.day }}</div> 
             <div>{{ d.weight }}斤</div>
-            <div style="font-size: 18px;">
+            <div style="font-size: 18px;text-align: center;">
                 <span v-if="d.difference > 0">﹢</span>
                 <span v-if="d.difference < 0">﹣</span>
                 {{ Math.abs(d.difference) }}

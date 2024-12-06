@@ -48,20 +48,16 @@
 </template>
 
 <script setup>
-import { computed, onMounted, onUnmounted, ref } from 'vue'
+import { computed,  ref, watch } from 'vue'
 import Layout from './Layout.vue'
 import { store } from '@/stores/db'
 import Card from '../components/Card.vue'
 import Charts from '../components/Charts.vue'
-import { getUrlBase64 } from '@/utils/base64.js'
-import storage from '../utils/storage'
 import FitSelector from '../components/FitSelector.vue'
 import FakeKeyBoard from '../components/FakeKeyBoard.vue';
-
+import { useTimeoutter } from '../utils/timeoutter'
 const postType = ref('list')
 const selectValue = ref('none')
-
-
 const chartData = ref(store.DB.fat || {})
 const whiteTypeList = ['echarts', 'fitness']
 
@@ -98,7 +94,6 @@ const types = ref([
 )
 
 const handleUploadImage = (event, insertImage, files) => {
-
     let reader = new FileReader();
     reader.readAsDataURL(files[0]); // 这里是最关键的一步，转换就在这里
     reader.onloadend = function () {
@@ -127,7 +122,6 @@ const changeOptions = (evt) => {
 
 const changeType = (v) => {
     postType.value = v
-    console.log(v)
     reset()
 }
 
@@ -140,8 +134,11 @@ const onEdit = (v) => {
 }
 
 const onDelete = (v) => {
-    store.deleteArticle(v.id, postType.value)
-    reset()
+    const ok = confirm('确认删除吗？')
+    if(ok){
+        store.deleteArticle(v.id, postType.value)
+        reset()
+    }
 }
 
 const reset = () => {
@@ -162,7 +159,6 @@ const save = () => {
         return
     }
 
-
     // 新内容
     if (!postData.value.id) {
         const d = new Date()
@@ -179,7 +175,18 @@ const save = () => {
     reset()
 }
 
-
+const autoSave = () => {
+    console.log('自动保存触发')
+    if (!postData.value.id) {
+        console.log('failed')
+       return 
+    } else {
+        // 编辑
+        store.editArticle(postData.value, postType.value)
+    }
+}
+// 开启自动保存
+useTimeoutter(autoSave,60000)
 
 </script>
 

@@ -29,7 +29,7 @@ onMounted(() => {
                 {{ now }}
             </div>
             <div class="ho" :tab="6" style="margin-right:10px;">
-                <router-link to="/game">小游戏</router-link>
+                <router-link to="/game">游戏</router-link>
             </div>
         </nav>
     </header>

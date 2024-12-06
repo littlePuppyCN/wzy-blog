@@ -48,7 +48,6 @@ const showArcticle = (value) => {
 const onChange = (p) => {
     curPage.value = p
 }
-console.log(data.value)
 const getLists = computed(() => {
     const start = curPage.value * 10 - 9
     const end = curPage.value * 10
