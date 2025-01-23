@@ -69,7 +69,7 @@ const options = ref(
 const initYaLin = [
     { name: '大哑铃', value: 0, factor: 3 },
     { name: '中哑铃', value: 0, factor: 2.5, },
-    { name: '小哑铃', value: 0, factor: 1.5 },
+    { name: '小哑铃', value: 0, factor: 1.25 },
 ]
 
 const yaLin = ref(JSON.parse(JSON.stringify(initYaLin)))

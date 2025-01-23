@@ -1,12 +1,14 @@
 <template>
-    <div class="filterBox" v-if="props.visible">
-        <div class="dialog">
-            <div class="close" @click="click">X</div>
-            <Card>
-                <slot />
-            </Card>
+    <KeepAlive>
+        <div class="filterBox" v-show="props.visible">
+            <div class="dialog">
+                <div class="close" @click="click">X</div>
+                <Card>
+                    <slot />
+                </Card>
+            </div>
         </div>
-    </div>
+    </KeepAlive>
 </template>
 
 <script setup>
@@ -59,7 +61,7 @@ watch(() => props.visible,
     text-align: center;
 }
 
-.close:hover{
+.close:hover {
     color: black;
     cursor: pointer;
 }
